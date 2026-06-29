@@ -9,3 +9,6 @@ Route::get('/admin', function () {
 Route::get('/dashboard', function () {
     return view('components.pages.dashboard');
 });
+Route::get('/animals', function () {
+    return view('components.pages.animals');
+});
