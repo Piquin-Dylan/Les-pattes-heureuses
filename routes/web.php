@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::get('/admin', function () {
+    return view('components.pages.login');
+});
+Route::get('/dashboard', function () {
+    return view('components.pages.dashboard');
 });
