@@ -13,6 +13,11 @@ class Animal extends Model
         'description',
         'photo',
         'age',
+        'sexe',
+        'status',
+        'species',
+        'sex',
+        'coat',
     ];
     public $timestamps = false;
 }

@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum SexeAnimal: string
+enum SexAnimal: string
 {
     case Male = 'male';
     case Female = 'female';

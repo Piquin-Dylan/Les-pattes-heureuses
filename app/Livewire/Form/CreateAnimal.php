@@ -23,6 +23,21 @@ class CreateAnimal extends Form
     #[Validate('required', message: 'Le champs age est requis')]
     public string $age = "";
 
+    #[Validate('required', message: 'Le champs age est requis')]
+    public string $sexe = "";
+
+    #[Validate('required', message: 'Le champs age est requis')]
+    public string $status = "";
+
+    #[Validate('required', message: 'Le champs age est requis')]
+    public string $species = "";
+
+    #[Validate('required', message: 'Le champs age est requis')]
+    public string $coat = "";
+
+    #[Validate('required', message: 'Le champs age est requis')]
+    public string $raceChoice = "";
+
 
     public function submit(): void
     {
@@ -32,7 +47,11 @@ class CreateAnimal extends Form
             'name' => $this->name,
             'description' => $this->description,
             'photo' => $this->photo,
-            'age' => $this->age
+            'age' => $this->age,
+            'sex' => $this->sexe,
+            'status' => $this->status,
+            'species' => $this->species,
+            'coat' => $this->coat,
         ]);
     }
 }

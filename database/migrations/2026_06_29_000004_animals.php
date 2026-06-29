@@ -1,6 +1,10 @@
 <?php
 
-use App\Enums\SexeAnimal;
+use App\Enums\CoatAnimal;
+use App\Enums\SpeciesAnimal;
+use App\Enums\SexAnimal;
+use App\Enums\StatusAnimal;
+use App\Enums\StatusAnimale;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,8 +18,11 @@ return new class extends Migration {
             $table->string('description');
             $table->string('photo')->nullable();
             $table->date('age');
-            $table->string('state')->nullable();
-            $table->enum('sexe', SexeAnimal::cases());
+            $table->enum('species', SpeciesAnimal::cases());
+            $table->enum('sex', SexAnimal::cases());
+            $table->enum('status', StatusAnimal::cases());
+            $table->enum('coat', CoatAnimal::cases());
+            $table->foreignId('breed_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
