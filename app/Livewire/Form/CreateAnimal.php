@@ -7,10 +7,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
+use App\Services\ImageService;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class CreateAnimal extends Form
 {
-
 
     #[Validate('required', message: 'Le champs nom est requis')]
     public string $name = "";
@@ -18,7 +19,8 @@ class CreateAnimal extends Form
     #[Validate('required', message: 'Le champs description est requis')]
     public string $description = "";
 
-    public string $photo = "";
+    #[Validate('required|image|max:5120')]
+    public ?TemporaryUploadedFile $photo = null;
 
     #[Validate('required', message: 'Le champs age est requis')]
     public string $age = "";
@@ -42,14 +44,16 @@ class CreateAnimal extends Form
     public string $vaccineChoice = "";
 
 
-    public function submit(): void
+    public function submit(ImageService $imageService): void
     {
         $this->validate();
+
+        $photo = $imageService->storeAnimalImage($this->photo);
 
         Animal::create([
             'name' => $this->name,
             'description' => $this->description,
-            'photo' => $this->photo,
+            'photo' => $photo,
             'age' => $this->age,
             'sex' => $this->sexe,
             'status' => $this->status,
