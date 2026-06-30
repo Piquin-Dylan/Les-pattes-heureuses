@@ -12,7 +12,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/animals', function () {
     return view('components.pages.animalsList');
-});
+})->name('animals');
 Route::get('/animals/create', function () {
     return view('components.pages.animals');
-});
+})->name('animals.create');
