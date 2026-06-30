@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Enums\SpeciesAnimal;
 use App\Models\Breed;
 use App\Models\User;
+use App\Models\Vaccine;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;

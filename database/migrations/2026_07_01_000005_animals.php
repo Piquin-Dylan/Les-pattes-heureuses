@@ -4,7 +4,6 @@ use App\Enums\CoatAnimal;
 use App\Enums\SpeciesAnimal;
 use App\Enums\SexAnimal;
 use App\Enums\StatusAnimal;
-use App\Enums\StatusAnimale;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -23,6 +22,7 @@ return new class extends Migration {
             $table->enum('status', StatusAnimal::cases());
             $table->enum('coat', CoatAnimal::cases());
             $table->foreignId('breed_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('vaccine_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

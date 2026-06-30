@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\SpeciesAnimal;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -9,6 +10,8 @@ return new class extends Migration {
     {
         Schema::create('vaccines', function (Blueprint $table) {
             $table->id();
+            $table->enum('species', array_column(SpeciesAnimal::cases(), 'value'));
+            $table->string('name');
             $table->timestamps();
         });
     }

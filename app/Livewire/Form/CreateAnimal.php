@@ -38,6 +38,9 @@ class CreateAnimal extends Form
     #[Validate('required', message: 'Le champs age est requis')]
     public string $raceChoice = "";
 
+    #[Validate('required', message: 'Le champs age est requis')]
+    public string $vaccineChoice = "";
+
 
     public function submit(): void
     {
@@ -52,6 +55,8 @@ class CreateAnimal extends Form
             'status' => $this->status,
             'species' => $this->species,
             'coat' => $this->coat,
+            'breed_id' => $this->raceChoice,
+            'vaccine_id' => $this->vaccineChoice,
         ]);
     }
 }

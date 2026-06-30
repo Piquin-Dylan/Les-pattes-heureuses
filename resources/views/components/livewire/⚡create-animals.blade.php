@@ -10,15 +10,19 @@ new class extends Component {
 
     public Collection $race;
 
+    public Collection $vaccine;
+
 
     public function mount(): void
     {
         $this->race = collect([]);
+        $this->vaccine = collect([]);
     }
 
     public function updateBreeds(): void
     {
-        $this->race = \App\Models\Breed::where('breeds.species', $this->form->species)->get();
+        $this->race = \App\Models\Breed::where('species', $this->form->species)->get();
+        $this->vaccine = \App\Models\Vaccine::where('species', $this->form->species)->get();
     }
 
     public function save(): void
@@ -32,101 +36,162 @@ new class extends Component {
         if ($property === 'form.species') {
             $this->updateBreeds();
             $this->form->raceChoice = '';
+            $this->form->vaccineChoice = '';
         }
     }
 };
 ?>
 
-<div>
+<div class="mx-auto max-w-3xl px-4 py-6">
+
+    <div class="mb-6">
+        <h1 class="text-2xl font-bold text-gray-900">
+            Ajouter un animal
+        </h1>
+
+        <p class="mt-1 text-sm text-gray-500">
+            Complétez les informations de votre animal afin qu'il puisse être proposé à l'adoption.
+        </p>
+    </div>
+
     <form
         wire:submit.prevent="save"
-        class="space-y-2">
+        class="space-y-8">
 
-        <x-form.input
-            label_name="Nom de l'animal"
-            for_label="name"
-            placeholder="Ex : Maya"
-            type="text"
-            id="name"
-            name="name"
-            wire:model.live="form.name"
-        />
+        <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-gray-100">
 
-        <x-form.input
-            label_name="Description"
-            for_label="description"
-            placeholder="Ex : il est gentil"
-            type="text"
-            id="description"
-            name="description"
-            wire:model.live="form.description"/>
+            <h2 class="mb-5 text-lg font-semibold text-gray-800">
+                Informations générales
+            </h2>
 
-        <x-form.input
-            label_name="photo de l'animal"
-            for_label="photo"
-            placeholder=""
-            type="file"
-            id="photo"
-            name="photo"
-            wire:model.live="form.photo"/>
+            <div class="space-y-5">
 
-        <x-form.input
-            label_name="age de l'animal"
-            for_label="age"
-            placeholder=""
-            type="date"
-            id="age"
-            name="age"
-            wire:model.live="form.age"/>
+                <x-form.input
+                    label_name="Nom"
+                    for_label="name"
+                    placeholder="Ex : Maya"
+                    type="text"
+                    id="name"
+                    name="name"
+                    wire:model.live="form.name"/>
 
+                <x-form.input
+                    label_name="Description"
+                    for_label="description"
+                    placeholder="Décrivez brièvement votre animal..."
+                    type="text"
+                    id="description"
+                    name="description"
+                    wire:model.live="form.description"/>
 
-        <x-form.select
-            label_name="Sexe"
-            for_label="sexe"
-            name="sexe"
-            id="sexe"
-            :options="\App\Enums\SexAnimal::cases()"
-            wire:model.live="form.sexe"/>
+                <x-form.input
+                    label_name="Photo"
+                    for_label="photo"
+                    type="file"
+                    id="photo"
+                    name="photo"
+                    wire:model.live="form.photo"/>
 
-        <x-form.select
-            label_name="Statut"
-            for_label="status"
-            name="status"
-            id="status"
-            :options="\App\Enums\StatusAnimal::cases()"
-            wire:model.live="form.status"/>
-        <x-form.select
-            label_name="Espèce"
-            for_label="species"
-            name="species"
-            id="species"
-            :options="\App\Enums\SpeciesAnimal::cases()"
-            wire:model.live="form.species"/>
-        <x-form.select
-            label_name="Pellage"
-            for_label="coat"
-            name="coat"
-            id="coat"
-            :options="\App\Enums\CoatAnimal::cases()"
-            wire:model.live="form.coat"/>
+            </div>
+
+        </div>
+
+        <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-gray-100">
+
+            <h2 class="mb-5 text-lg font-semibold text-gray-800">
+                Caractéristiques
+            </h2>
+
+            <div class="grid gap-5 md:grid-cols-2">
+
+                <x-form.input
+                    label_name="Date de naissance"
+                    for_label="age"
+                    type="date"
+                    id="age"
+                    name="age"
+                    wire:model.live="form.age"/>
+
+                <x-form.select
+                    label_name="Espèce"
+                    for_label="species"
+                    name="species"
+                    id="species"
+                    :options="\App\Enums\SpeciesAnimal::cases()"
+                    wire:model.live="form.species"/>
+
+                <x-form.select
+                    label_name="Sexe"
+                    for_label="sexe"
+                    name="sexe"
+                    id="sexe"
+                    :options="\App\Enums\SexAnimal::cases()"
+                    wire:model.live="form.sexe"/>
+
+                <x-form.select
+                    label_name="Statut"
+                    for_label="status"
+                    name="status"
+                    id="status"
+                    :options="\App\Enums\StatusAnimal::cases()"
+                    wire:model.live="form.status"/>
+
+                <x-form.select
+                    label_name="Pelage"
+                    for_label="coat"
+                    name="coat"
+                    id="coat"
+                    :options="\App\Enums\CoatAnimal::cases()"
+                    wire:model.live="form.coat"/>
+
+            </div>
+
+        </div>
 
         @if($this->form->species)
 
-                <x-form.select
-                    label_name="Race de l'animale"
-                    for_label="breed"
-                    name="breed"
-                    id="breed"
-                    wire:model.live="form.raceChoice"
-                    :options="$this->race"
-                />
+            <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-gray-100">
+
+                <h2 class="mb-5 text-lg font-semibold text-gray-800">
+                    Informations spécifiques
+                </h2>
+
+                <div class="grid gap-5 md:grid-cols-2">
+
+                    <x-form.select
+                        label_name="Race"
+                        for_label="breed"
+                        name="breed"
+                        id="breed"
+                        wire:model.live="form.raceChoice"
+                        :options="$this->race"/>
+
+                    <x-form.select
+                        label_name="Vaccin"
+                        for_label="vaccine"
+                        name="vaccine"
+                        id="vaccine"
+                        wire:model.live="form.vaccineChoice"
+                        :options="$this->vaccine"/>
+
+                </div>
+
+            </div>
 
         @endif
 
-        <button
-            type="submit"
-            class="mt-6 w-full rounded-2xl bg-[#C67C47] py-4 font-semibold text-white shadow-lg transition duration-300 hover:bg-[#A96534] active:scale-95 cursor-pointer">
-            Créer l'animal
-        </button>
+        <div class="sticky bottom-4">
+
+            <button
+                type="submit"
+                class="w-full rounded-2xl bg-[#C67C47] py-4 text-base font-semibold text-white shadow-xl transition hover:bg-[#b56f3c] active:scale-[0.98]">
+
+                Ajouter l'animal
+
+            </button>
+
+        </div>
+
     </form>
+
 </div>

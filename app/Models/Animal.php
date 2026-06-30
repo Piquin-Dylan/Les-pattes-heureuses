@@ -18,6 +18,9 @@ class Animal extends Model
         'species',
         'sex',
         'coat',
+        'breed',
+        'breed_id',
+        'vaccine_id',
     ];
     public $timestamps = false;
 }
