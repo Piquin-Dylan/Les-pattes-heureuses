@@ -26,7 +26,6 @@ class DatabaseSeeder extends Seeder
         ]);
         $breeds = [
 
-            // Chiens
             ['species' => SpeciesAnimal::chien->value, 'name' => 'Labrador Retriever'],
             ['species' => SpeciesAnimal::chien->value, 'name' => 'Golden Retriever'],
             ['species' => SpeciesAnimal::chien->value, 'name' => 'Berger Allemand'],
@@ -40,7 +39,6 @@ class DatabaseSeeder extends Seeder
             ['species' => SpeciesAnimal::chien->value, 'name' => 'Rottweiler'],
             ['species' => SpeciesAnimal::chien->value, 'name' => 'Jack Russell Terrier'],
 
-            // Chats
             ['species' => SpeciesAnimal::chat->value, 'name' => 'Maine Coon'],
             ['species' => SpeciesAnimal::chat->value, 'name' => 'Persan'],
             ['species' => SpeciesAnimal::chat->value, 'name' => 'Siamois'],
@@ -52,11 +50,33 @@ class DatabaseSeeder extends Seeder
             ['species' => SpeciesAnimal::chat->value, 'name' => 'Sacré de Birmanie'],
             ['species' => SpeciesAnimal::chat->value, 'name' => 'Chartreux'],
             ['species' => SpeciesAnimal::chat->value, 'name' => 'Européen'],
-
         ];
 
         foreach ($breeds as $breed) {
             Breed::create($breed);
+        }
+
+        $vaccines = [
+
+            // Chiens
+            ['species' => SpeciesAnimal::chien->value, 'name' => 'Maladie de Carré'],
+            ['species' => SpeciesAnimal::chien->value, 'name' => 'Hépatite de Rubarth'],
+            ['species' => SpeciesAnimal::chien->value, 'name' => 'Parvovirose'],
+            ['species' => SpeciesAnimal::chien->value, 'name' => 'Parainfluenza'],
+            ['species' => SpeciesAnimal::chien->value, 'name' => 'Leptospirose'],
+            ['species' => SpeciesAnimal::chien->value, 'name' => 'Rage'],
+            ['species' => SpeciesAnimal::chien->value, 'name' => 'Toux du chenil'],
+
+            // Chats
+            ['species' => SpeciesAnimal::chat->value, 'name' => 'Typhus (Panleucopénie féline)'],
+            ['species' => SpeciesAnimal::chat->value, 'name' => 'Coryza'],
+            ['species' => SpeciesAnimal::chat->value, 'name' => 'Leucose féline (FeLV)'],
+            ['species' => SpeciesAnimal::chat->value, 'name' => 'Rage'],
+            ['species' => SpeciesAnimal::chat->value, 'name' => 'Chlamydiose féline'],
+        ];
+
+        foreach ($vaccines as $vaccine) {
+            Vaccine::create($vaccine);
         }
     }
 }
