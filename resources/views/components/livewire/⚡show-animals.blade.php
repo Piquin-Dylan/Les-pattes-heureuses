@@ -1,19 +1,35 @@
 <?php
 
 use App\Models\Animal;
+use Illuminate\Support\Collection;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
+use Livewire\WithPagination;
 
-new class extends Component {
 
-    public $animals;
+new class extends Component
+{
+    use WithPagination;
 
-    public function mount()
+
+    public string $searchAnimal = '';
+
+
+    public function getAnimalsProperty(): \LaravelIdea\Helper\App\Models\_IH_Animal_C|\Illuminate\Pagination\LengthAwarePaginator|array
     {
-        $this->animals = Animal::all();
+        return Animal::query()
+            ->when($this->searchAnimal, function ($query) {
+                $query->where(
+                    'name',
+                    'like',
+                    '%' . $this->searchAnimal . '%'
+                );
+            })
+            ->paginate(1);
     }
+
 };
 ?>
-
 <div class="space-y-8">
 
     <div class="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
@@ -38,6 +54,12 @@ new class extends Component {
 
     </div>
 
+    <div>
+
+    </div>
+
+    {{ $this->getAnimalsProperty()->links() }}
+
     <div class="rounded-3xl border border-gray-200 bg-white p-5 shadow-sm">
 
         <div class="grid gap-4 lg:grid-cols-4">
@@ -49,10 +71,10 @@ new class extends Component {
                 </label>
 
                 <input
+                    wire:model.live.debounce.300ms="searchAnimal"
                     type="text"
                     placeholder="Nom d'un animal..."
                     class="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none transition focus:border-[#C67C47]">
-
             </div>
 
             <div>
