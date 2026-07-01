@@ -15,6 +15,8 @@ new class extends Component {
 
     public string $filters = 'toutes';
 
+    public string $filtersStatus = 'tous';
+
 
     public function filter($string): void
     {
@@ -34,7 +36,12 @@ new class extends Component {
             })->when($this->filters !== 'toutes', function ($query) {
                 $query->where(
                     'animals.species',
-                        $this->filters
+                    $this->filters
+                );
+            })->when($this->filtersStatus !== 'tous', function ($query) {
+                $query->where(
+                    'animals.status',
+                    $this->filtersStatus
                 );
             })->paginate(6);
     }
@@ -110,12 +117,15 @@ new class extends Component {
                     Statut
                 </label>
 
-                <select class="w-full rounded-xl border border-gray-300 px-4 py-3">
+                <select wire:model="filtersStatus" class="w-full rounded-xl border border-gray-300 px-4 py-3">
 
-                    <option>Tous</option>
-                    <option>Adoptable</option>
-                    <option>Adopté</option>
-                    <option>En soin</option>
+                    <option value="">tous</option>
+
+                    @foreach(\App\Enums\StatusAnimal::cases() as $status)
+                        <option value="{{ $status->value }}">
+                            {{ $status->label() }}
+                        </option>
+                    @endforeach
 
                 </select>
 

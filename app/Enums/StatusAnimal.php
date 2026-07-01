@@ -4,13 +4,13 @@ namespace App\Enums;
 
 enum StatusAnimal: string
 {
-    case ADOPTABLE = 'adoptable';
+    case ADOPTABLE = 'Adoptable';
 
-    case ADOPTED = 'adopted';
-    case IN_CARE = 'in_care';
-    case UNAVAILABLE = 'unavailable';
-    case PENDING = 'pending';
-    case IN_ADOPTION = 'in_adoption';
+    case ADOPTED = 'Adopté';
+    case IN_CARE = 'Pris en charge';
+    case UNAVAILABLE = 'Indisponible';
+    case PENDING = 'En attente';
+    case IN_ADOPTION = 'En cours d adoption';
 
     public function label(): string
     {
