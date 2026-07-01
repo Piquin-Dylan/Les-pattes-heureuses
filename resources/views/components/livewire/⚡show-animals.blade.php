@@ -25,7 +25,7 @@ new class extends Component
                     '%' . $this->searchAnimal . '%'
                 );
             })
-            ->paginate(1);
+            ->paginate(6);
     }
 
 };

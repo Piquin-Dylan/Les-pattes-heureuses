@@ -6,14 +6,21 @@ use Livewire\Component;
 new class extends Component {
     public Animal $animal;
 
+
+    public function deleteAnimal(): \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+    {
+        if ($this->animal->delete()) {
+            return redirect(route('animals'));
+        }
+    }
 }
 ?>
 
 <div class="mx-auto max-w-6xl space-y-6">
 
     <a
-        href="{{ route('animals') }}"
-        class="inline-flex items-center gap-2 text-sm font-medium text-[#C67C47] hover:underline">
+            href="{{ route('animals') }}"
+            class="inline-flex items-center gap-2 text-sm font-medium text-[#C67C47] hover:underline">
 
         ← Retour aux animaux
 
@@ -22,17 +29,17 @@ new class extends Component {
     <div class="overflow-hidden rounded-3xl bg-white shadow-md">
 
         <div class="flex justify-center items-center mt-8">
-        <div class="w-32 aspect-square overflow-hidden rounded-full">
-            <img
-                src="{{ asset('storage/animals/'.$animal->photo.'/640.webp') }}"
-                srcset="
+            <div class="w-32 aspect-square overflow-hidden rounded-full">
+                <img
+                        src="{{ asset('storage/animals/'.$animal->photo.'/640.webp') }}"
+                        srcset="
             {{ asset('storage/animals/'.$animal->photo.'/320.webp') }} 320w,
             {{ asset('storage/animals/'.$animal->photo.'/640.webp') }} 640w,
             {{ asset('storage/animals/'.$animal->photo.'/1280.webp') }} 1280w"
-                sizes="128px"
-                alt="{{ $animal->name }}"
-                class="w-full h-full object-cover">
-        </div>
+                        sizes="128px"
+                        alt="{{ $animal->name }}"
+                        class="w-full h-full object-cover">
+            </div>
         </div>
         <div class="space-y-6 p-6">
 
@@ -179,11 +186,10 @@ new class extends Component {
 
                 </button>
 
-                <button
+                <button wire:click="deleteAnimal"
                     class="rounded-2xl border border-red-500 py-4 font-semibold text-red-500 transition hover:bg-red-50">
 
                     Supprimer
-
                 </button>
 
             </div>
