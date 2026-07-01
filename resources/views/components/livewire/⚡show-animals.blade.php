@@ -7,12 +7,19 @@ use Livewire\Component;
 use Livewire\WithPagination;
 
 
-new class extends Component
-{
+new class extends Component {
     use WithPagination;
 
 
     public string $searchAnimal = '';
+
+    public string $filters = 'toutes';
+
+
+    public function filter($string): void
+    {
+        $this->filters = $string;
+    }
 
 
     public function getAnimalsProperty(): \LaravelIdea\Helper\App\Models\_IH_Animal_C|\Illuminate\Pagination\LengthAwarePaginator|array
@@ -24,8 +31,12 @@ new class extends Component
                     'like',
                     '%' . $this->searchAnimal . '%'
                 );
-            })
-            ->paginate(6);
+            })->when($this->filters !== 'toutes', function ($query) {
+                $query->where(
+                    'animals.species',
+                        $this->filters
+                );
+            })->paginate(6);
     }
 
 };
@@ -83,11 +94,11 @@ new class extends Component
                     Espèce
                 </label>
 
-                <select class="w-full rounded-xl border border-gray-300 px-4 py-3">
+                <select wire:model.live="filters" class="w-full rounded-xl border border-gray-300 px-4 py-3">
 
-                    <option>Toutes</option>
-                    <option>Chien</option>
-                    <option>Chat</option>
+                    <option>toutes</option>
+                    <option>chat</option>
+                    <option>chien</option>
 
                 </select>
 
