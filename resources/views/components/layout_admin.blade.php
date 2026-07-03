@@ -1504,22 +1504,22 @@
                 </li>
 
                 <li>
-                    <a href="/match"
+                    <a href="/animals"
                        class="block w-full px-4 py-3 rounded-xl transition-all duration-200 text-center
                        {{ request()->is('match')
                             ? 'bg-white text-[#C67C47] shadow-md'
                             : 'text-white hover:bg-[#D8935E] active:bg-[#B86E39]' }}">
-                        Match
+                        Animaux
                     </a>
                 </li>
 
                 <li>
-                    <a href="/train"
+                    <a href="/members"
                        class="block w-full px-4 py-3 rounded-xl transition-all duration-200 text-center
                        {{ request()->is('train')
                             ? 'bg-white text-[#C67C47] shadow-md'
                             : 'text-white hover:bg-[#D8935E] active:bg-[#B86E39]' }}">
-                        Entrainement
+                        Membres
                     </a>
                 </li>
 

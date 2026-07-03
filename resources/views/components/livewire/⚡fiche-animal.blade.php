@@ -36,7 +36,6 @@ new class extends Component {
             class="rounded-2xl bg-[#C67C47] py-4 font-semibold text-white transition hover:bg-[#B56F3C]">
 
             Modifier l'animal
-
         </button>
 
         <button wire:click="deleteAnimal"
@@ -44,6 +43,5 @@ new class extends Component {
 
             Supprimer
         </button>
-
     </div>
 </div>

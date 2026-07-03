@@ -48,13 +48,10 @@ new class extends Component {
 <div class="w-full px-4 py-6">
 
     <section class="mb-8">
-        <h2 class="text-3xl font-bold text-gray-900">
-            Ajouter un animal
-        </h2>
-
-        <p class="mt-2 text-gray-500">
-            Complétez les informations de l'animal avant de le rendre disponible à l'adoption.
-        </p>
+        <x-page-header
+            title="Ajouter un animal"
+            description="Complétez les informations de l'animal avant de le rendre disponible à l'adoption."
+        />
 
 
     <form

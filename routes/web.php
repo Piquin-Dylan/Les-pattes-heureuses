@@ -27,4 +27,9 @@ Route::middleware('auth')->group(function () {
             "animal"=>$animal
         ]);
     })->name('animals.show');
+
+    Route::get('/members', function (\App\Models\Animal $animal) {
+        return view('components.pages.member.membersShow',[
+        ]);
+    })->name('members.show');
 });

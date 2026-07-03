@@ -117,9 +117,9 @@ new class extends Component {
                     Statut
                 </label>
 
-                <select wire:model="filtersStatus" class="w-full rounded-xl border border-gray-300 px-4 py-3">
+                <select wire:model.live="filtersStatus" class="w-full rounded-xl border border-gray-300 px-4 py-3">
 
-                    <option value="">tous</option>
+                    <option value="tous">tous</option>
 
                     @foreach(\App\Enums\StatusAnimal::cases() as $status)
                         <option value="{{ $status->value }}">
