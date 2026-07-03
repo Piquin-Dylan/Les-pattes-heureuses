@@ -5,38 +5,64 @@ use Livewire\Component;
 
 new class extends Component {
 
-    public $members;
 
     public string $searchMembers = '';
 
-
-    public function mount() {
-        $this->members = User::all();
-    }
-
-    public function getMembersProperty(): \LaravelIdea\Helper\App\Models\_IH_Animal_C|\Illuminate\Pagination\LengthAwarePaginator|array
+    public function getMembersProperty(): array|\Illuminate\Pagination\LengthAwarePaginator|\LaravelIdea\Helper\App\Models\_IH_User_C
     {
-        return \App\Models\User::query()
+        return User::query()
             ->when($this->searchMembers, function ($query) {
-                $query->where(
-                    'firstName',
-                    'like',
-                    '%' . $this->searchMembers . '%'
-                );
-            })->paginate(6);
+                $query->where(function ($query) {
+                    $query->where(
+                        'firstName',
+                        'like',
+                        '%' . $this->searchMembers . '%'
+                    )->orWhere(
+                        'lastName',
+                        'like',
+                        '%' . $this->searchMembers . '%'
+                    );
+                });
+            })
+            ->paginate(6);
     }
 };
 ?>
 
 <div>
     <section>
-        <x-page-header
-            title="Liste du personnels"
-            description="Gestion de toute l'équipe"/>
+        <div class="space-y-8">
+
+            <x-page-header
+                title="Liste du personnel"
+                description="Gestion de toute l'équipe"/>
+
+            <div class="rounded-3xl border border-gray-200 bg-white p-5 shadow-sm">
+
+                <div class="lg:col-span-2">
+
+                    <label class="mb-2 block text-sm font-medium text-gray-700">
+                        Recherche
+                    </label>
+
+                    <input
+                        wire:model.live.debounce.300ms="searchMembers"
+                        type="text"
+                        placeholder="Nom d'un membre"
+                        class="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none transition focus:border-[#C67C47]">
+                </div>
+
+            </div>
 
 
-        @foreach($this->members as $member)
-        <x-card_members :member="$member"></x-card_members>
-        @endforeach
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+
+                @foreach($this->members as $member)
+                    <x-card_members :member="$member"/>
+                @endforeach
+
+            </div>
+
+        </div>
     </section>
 </div>

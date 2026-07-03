@@ -23,13 +23,20 @@ Route::middleware('auth')->group(function () {
     })->name('animals.create');
 
     Route::get('/animals/{animal}', function (\App\Models\Animal $animal) {
-        return view('components.pages.animals.animalsShow',[
-            "animal"=>$animal
+        return view('components.pages.animals.animalsShow', [
+            "animal" => $animal
         ]);
     })->name('animals.show');
 
-    Route::get('/members', function (\App\Models\Animal $animal) {
-        return view('components.pages.member.membersShow',[
+    Route::get('/members', function () {
+        return view('components.pages.member.membersShow', [
         ]);
     })->name('members.show');
+
+
+    Route::get('/members/{member}', function (\App\Models\User $member) {
+        return view('components.pages.member.memberFiche', [
+            "member" => $member
+        ]);
+    })->name('members.fiche');
 });
