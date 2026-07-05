@@ -3,9 +3,15 @@
 use Illuminate\Support\Facades\Route;
 
 
+Route::get('/', function () {
+    return view('components.client.pages.accueil');
+})->name('login');
+
+
 Route::get('/admin', function () {
     return view('components.pages.login');
 })->name('login');
+
 
 
 Route::middleware('auth')->group(function () {

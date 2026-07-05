@@ -62,14 +62,14 @@ new class extends Component {
             </p>
         </div>
 
-        <a
-            href="{{ route('animals.create') }}"
-            class="rounded-2xl bg-[#C67C47] px-6 py-3 text-center font-semibold text-white transition hover:bg-[#b56f3c]">
+        @unless(\Illuminate\Support\Facades\Auth::guest())
+            <a
+                href="{{ route('animals.create') }}"
+                class="rounded-2xl bg-[#C67C47] px-6 py-3 text-center font-semibold text-white transition hover:bg-[#b56f3c]">
 
-            Ajouter un animal
-
-        </a>
-
+                Ajouter un animal
+            </a>
+        @endunless
     </div>
 
     <div>

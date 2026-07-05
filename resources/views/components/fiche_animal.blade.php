@@ -77,9 +77,7 @@
 
                     <p class="font-semibold">
 
-                        {{--
-                                                    {{ $animal->breed->name }}
-                        --}}
+                        {{ $animal->breed->name }}
 
                     </p>
 
@@ -92,9 +90,7 @@
                     </p>
 
                     <p class="font-semibold">
-
-                        {{ $animal->age }}
-
+                        {{ \Carbon\Carbon::parse($animal->age)->locale('fr')->diffForHumans(null, true) }}
                     </p>
 
                 </div>
@@ -120,11 +116,7 @@
                     </p>
 
                     <p class="font-semibold">
-
-                        {{--
-                                                    {{ $animal->vaccine->name }}
-                        --}}
-
+                        {{ $animal->vaccine->name }}
                     </p>
 
                 </div>
@@ -136,9 +128,7 @@
         <div class="rounded-2xl border border-gray-200 p-5">
 
             <h2 class="mb-4 text-lg font-bold">
-
                 Description
-
             </h2>
 
             <p class="leading-7 text-gray-600">

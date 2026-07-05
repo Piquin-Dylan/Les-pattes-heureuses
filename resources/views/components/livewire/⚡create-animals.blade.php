@@ -175,8 +175,7 @@ new class extends Component {
                     type="submit"
                     class="w-full cursor-pointer rounded-2xl bg-[#C67C47] px-8 py-4 text-base font-semibold text-white shadow-lg transition hover:bg-[#b56f3c] active:scale-95 lg:w-auto">
 
-                    Modifier l'animal
-
+                    Création de la fiche de l'animale
                 </button>
 
             </div>

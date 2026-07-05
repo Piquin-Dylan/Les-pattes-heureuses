@@ -1543,6 +1543,8 @@
                     </a>
                 </li>
 
+                <livewire:livewire.logout></livewire:livewire.logout>
+
             </ul>
 
         </nav>
