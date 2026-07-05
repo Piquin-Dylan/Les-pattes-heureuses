@@ -33,9 +33,22 @@ new class extends Component {
     <section>
         <div class="space-y-8">
 
-            <x-page-header
-                title="Liste du personnel"
-                description="Gestion de toute l'équipe"/>
+            <div class="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+
+                <x-page-header
+                    title="Liste du personnel"
+                    description="Gestion de toute l'équipe"/>
+
+
+                <a
+                    href="members/create"
+                    class="rounded-2xl bg-[#C67C47] px-6 py-3 text-center font-semibold text-white transition hover:bg-[#b56f3c]">
+
+                    Ajouter un membre
+
+                </a>
+
+            </div>
 
             <div class="rounded-3xl border border-gray-200 bg-white p-5 shadow-sm">
 
@@ -51,9 +64,7 @@ new class extends Component {
                         placeholder="Nom d'un membre"
                         class="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none transition focus:border-[#C67C47]">
                 </div>
-
             </div>
-
 
             <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
 

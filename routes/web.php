@@ -22,16 +22,27 @@ Route::middleware('auth')->group(function () {
         return view('components.pages.animals.animals');
     })->name('animals.create');
 
+
     Route::get('/animals/{animal}', function (\App\Models\Animal $animal) {
         return view('components.pages.animals.animalsShow', [
             "animal" => $animal
         ]);
     })->name('animals.show');
 
+    Route::get('/animals/{animal}/edit', function (\App\Models\Animal $animal) {
+        return view('components.pages.animals.animalEdit', [
+            "animal" => $animal
+        ]);
+    })->name('animals.edit');
+
     Route::get('/members', function () {
         return view('components.pages.member.membersShow', [
         ]);
     })->name('members.show');
+
+    Route::get('/members/create', function () {
+        return view('components.pages.member.memberCreate');
+    })->name('members.create');
 
 
     Route::get('/members/{member}', function (\App\Models\User $member) {
