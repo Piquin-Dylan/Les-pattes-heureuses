@@ -32,11 +32,11 @@ new class extends Component {
 
     <div class="flex flex-col gap-3">
 
-        <button
+        <a href="{{route('animals.edit',$animal->id)}}"
             class="rounded-2xl bg-[#C67C47] py-4 font-semibold text-white transition hover:bg-[#B56F3C]">
 
             Modifier l'animal
-        </button>
+        </a>
 
         <button wire:click="deleteAnimal"
                 class="rounded-2xl border border-red-500 py-4 font-semibold text-red-500 transition hover:bg-red-50">

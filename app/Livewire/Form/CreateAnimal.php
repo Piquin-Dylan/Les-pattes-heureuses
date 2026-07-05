@@ -3,8 +3,6 @@
 namespace App\Livewire\Form;
 
 use App\Models\Animal;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 use App\Services\ImageService;
