@@ -23,8 +23,15 @@ class Animal extends Model
         'breed',
         'breed_id',
         'vaccine_id',
+        'slug',
     ];
     public $timestamps = false;
+
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 
 
     public function breed() : BelongsTo {

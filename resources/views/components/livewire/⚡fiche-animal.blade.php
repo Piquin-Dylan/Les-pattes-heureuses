@@ -46,8 +46,9 @@ new class extends Component {
         </div>
     @endunless
     @guest
-        <a href="   {{ route('public.adoption') }}"
-           class="rounded-2xl bg-[#C67C47] py-4 font-semibold text-white transition hover:bg-[#B56F3C]">
+        <a
+            href="{{ route('public.adoption', ['animal' => $animal->name]) }}"
+            class="block rounded-xl bg-[#C67C47] py-3 text-center font-semibold text-white transition hover:bg-[#b56f3c]">
             Demande d'adoption
         </a>
     @endguest

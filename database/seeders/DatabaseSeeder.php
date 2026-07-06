@@ -14,6 +14,7 @@ use App\Models\Vaccine;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -136,6 +137,7 @@ class DatabaseSeeder extends Seeder
         $animals = [
             [
                 'name' => 'Rocky',
+                'slug' => Str::slug('Rocky'),
                 'description' => 'Chien très joueur, affectueux et habitué aux enfants.',
                 'photo' => null,
                 'age' => '2021-05-12',
@@ -144,10 +146,14 @@ class DatabaseSeeder extends Seeder
                 'status' => StatusAnimal::ADOPTABLE,
                 'coat' => CoatAnimal::SHORT_COAT,
                 'breed_id' => Breed::where('name', 'Labrador Retriever')->first()->id,
-                'vaccine_id' => Vaccine::where('name', 'Rage')->where('species', SpeciesAnimal::chien)->first()->id,
+                'vaccine_id' => Vaccine::where('name', 'Rage')
+                    ->where('species', SpeciesAnimal::chien)
+                    ->first()
+                    ->id,
             ],
             [
                 'name' => 'Luna',
+                'slug' => Str::slug('Luna'),
                 'description' => 'Chatte calme qui adore les câlins et les longues siestes.',
                 'photo' => null,
                 'age' => '2023-02-18',
@@ -156,10 +162,14 @@ class DatabaseSeeder extends Seeder
                 'status' => StatusAnimal::PENDING,
                 'coat' => CoatAnimal::LONG_COAT,
                 'breed_id' => Breed::where('name', 'Maine Coon')->first()->id,
-                'vaccine_id' => Vaccine::where('name', 'Rage')->where('species', SpeciesAnimal::chat)->first()->id,
+                'vaccine_id' => Vaccine::where('name', 'Rage')
+                    ->where('species', SpeciesAnimal::chat)
+                    ->first()
+                    ->id,
             ],
             [
                 'name' => 'Max',
+                'slug' => Str::slug('Max'),
                 'description' => 'Berger Allemand obéissant, parfait pour une famille active.',
                 'photo' => null,
                 'age' => '2019-09-30',
@@ -168,10 +178,14 @@ class DatabaseSeeder extends Seeder
                 'status' => StatusAnimal::ADOPTED,
                 'coat' => CoatAnimal::MEDIUM_COAT,
                 'breed_id' => Breed::where('name', 'Berger Allemand')->first()->id,
-                'vaccine_id' => Vaccine::where('name', 'Parvovirose')->where('species', SpeciesAnimal::chien)->first()->id,
+                'vaccine_id' => Vaccine::where('name', 'Parvovirose')
+                    ->where('species', SpeciesAnimal::chien)
+                    ->first()
+                    ->id,
             ],
             [
                 'name' => 'Nala',
+                'slug' => Str::slug('Nala'),
                 'description' => 'Jeune chatte curieuse qui aime jouer toute la journée.',
                 'photo' => null,
                 'age' => '2022-07-21',
@@ -180,10 +194,14 @@ class DatabaseSeeder extends Seeder
                 'status' => StatusAnimal::IN_ADOPTION,
                 'coat' => CoatAnimal::SHORT_COAT,
                 'breed_id' => Breed::where('name', 'British Shorthair')->first()->id,
-                'vaccine_id' => Vaccine::where('name', 'Coryza')->where('species', SpeciesAnimal::chat)->first()->id,
+                'vaccine_id' => Vaccine::where('name', 'Coryza')
+                    ->where('species', SpeciesAnimal::chat)
+                    ->first()
+                    ->id,
             ],
             [
                 'name' => 'Thor',
+                'slug' => Str::slug('Thor'),
                 'description' => 'Husky très sportif qui adore courir et les promenades.',
                 'photo' => null,
                 'age' => '2020-12-08',
@@ -192,7 +210,10 @@ class DatabaseSeeder extends Seeder
                 'status' => StatusAnimal::IN_CARE,
                 'coat' => CoatAnimal::LONG_COAT,
                 'breed_id' => Breed::where('name', 'Husky Sibérien')->first()->id,
-                'vaccine_id' => Vaccine::where('name', 'Leptospirose')->where('species', SpeciesAnimal::chien)->first()->id,
+                'vaccine_id' => Vaccine::where('name', 'Leptospirose')
+                    ->where('species', SpeciesAnimal::chien)
+                    ->first()
+                    ->id,
             ],
         ];
 

@@ -3,6 +3,7 @@
 namespace App\Livewire\Form;
 
 use App\Models\Animal;
+use Illuminate\Support\Str;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 use App\Services\ImageService;
@@ -59,6 +60,7 @@ class CreateAnimal extends Form
             'coat' => $this->coat,
             'breed_id' => $this->raceChoice,
             'vaccine_id' => $this->vaccineChoice,
+            'slug' => Str::slug($this->name),
         ]);
     }
 }

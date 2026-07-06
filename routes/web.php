@@ -20,12 +20,11 @@ Route::get('/animal/{animal}', function (\App\Models\Animal $animal) {
     ]);
 })->name('public.animals.show');
 
-Route::get('adoption', function (\App\Models\Animal $animal) {
+Route::get('adoption/{animal}', function (\App\Models\Animal $animal) {
     return view('components.client.pages.adoption', [
         'animal' => $animal
     ]);
 })->name('public.adoption');
-
 
 
 Route::middleware('auth')->group(function () {

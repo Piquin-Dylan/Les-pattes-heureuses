@@ -21,6 +21,7 @@ return new class extends Migration {
             $table->enum('sex', SexAnimal::cases());
             $table->enum('status', StatusAnimal::cases());
             $table->enum('coat', CoatAnimal::cases());
+            $table->string('slug')->unique();
             $table->foreignId('breed_id')->constrained()->cascadeOnDelete();
             $table->foreignId('vaccine_id')->constrained()->cascadeOnDelete();
             $table->timestamps();

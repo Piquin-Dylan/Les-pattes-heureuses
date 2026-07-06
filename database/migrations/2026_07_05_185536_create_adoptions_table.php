@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->string('firstName');
             $table->string('lastName');
             $table->string('email');
-            $table->string('phonpm ne', 30);
+            $table->string('phone', 30);
             $table->string('message');
             $table->foreignId('animal_id')->constrained('animals')->cascadeOnDelete();
             $table->timestamps();
