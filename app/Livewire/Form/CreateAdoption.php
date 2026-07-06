@@ -8,38 +8,21 @@ use Livewire\Form;
 use App\Services\ImageService;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
-class CreateAnimal extends Form
+class CreateAdoption extends Form
 {
 
+    #[Validate('required', message: 'Le champs prénom est requis')]
+    public string $firstName = "";
+
     #[Validate('required', message: 'Le champs nom est requis')]
-    public string $name = "";
+    public string $lastName = "";
+
+    #[Validate('required', message: 'Le champs email est requis')]
+    public string $email = "";
 
     #[Validate('required', message: 'Le champs description est requis')]
     public string $description = "";
 
-    #[Validate('required|image|max:5120')]
-    public ?TemporaryUploadedFile $photo = null;
-
-    #[Validate('required', message: 'Le champs age est requis')]
-    public string $age = "";
-
-    #[Validate('required', message: 'Le champs sexe est requis')]
-    public string $sexe = "";
-
-    #[Validate('required', message: 'Le champs status est requis')]
-    public string $status = "";
-
-    #[Validate('required', message: 'Le champs espèces est requis')]
-    public string $species = "";
-
-    #[Validate('required', message: 'Le champs pellage est requis')]
-    public string $coat = "";
-
-    #[Validate('required', message: 'Le champs race est requis')]
-    public string $raceChoice = "";
-
-    #[Validate('required', message: 'Le champs vaccin est requis')]
-    public string $vaccineChoice = "";
 
 
     public function submit(ImageService $imageService): void

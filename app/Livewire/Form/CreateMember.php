@@ -14,25 +14,25 @@ use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 class CreateMember extends Form
 {
 
-    #[Validate('required', message: 'Le champs nom est requis')]
+    #[Validate('required', message: 'Le champs prénom est requis')]
     public string $firstName = "";
 
-    #[Validate('required', message: 'Le champs description est requis')]
+    #[Validate('required', message: 'Le champs nom est requis')]
     public string $lastName = "";
 
     #[Validate('required|image|max:5120')]
     public ?TemporaryUploadedFile $photo = null;
 
-    #[Validate('required', message: 'Le champs age est requis')]
+    #[Validate('required', message: 'Le champs status est requis')]
     public string $status = "";
 
-    #[Validate('required|email', message: 'Le champs age est requis')]
+    #[Validate('required|email', message: 'Le champs email est requis')]
     public string $email = "";
 
-    #[Validate('required', message: 'Le champs age est requis')]
+    #[Validate('required', message: 'Le champs mot de passe est requis')]
     public string $password = "";
 
-    #[Validate('required', message: 'Le champs age est requis')]
+    #[Validate('required', message: 'Le champs téléphone est requis')]
     public string $phone = "";
 
 

@@ -56,8 +56,12 @@
             </div>
         </div>
         <a
-            href="{{route('animals.show',$animal->id)}}"
+            href="{{ auth()->check()
+        ? route('animals.show', $animal->id)
+        : route('public.animals.show', $animal->id)
+    }}"
             class="block rounded-xl bg-[#C67C47] py-3 text-center font-semibold text-white transition hover:bg-[#b56f3c]">
+
             Voir la fiche
         </a>
 
