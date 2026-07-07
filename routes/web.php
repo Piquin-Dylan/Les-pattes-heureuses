@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 
 
-
 Route::get('/', function () {
     return view('components.client.pages.accueil');
 })->name('login');
@@ -66,4 +65,9 @@ Route::middleware('auth')->group(function () {
             'member' => $member
         ]);
     })->name('members.fiche');
+
+    Route::get('/adoption', function () {
+        return view('components.pages.adoption.adoption_list', [
+        ]);
+    })->name('adoption');
 });

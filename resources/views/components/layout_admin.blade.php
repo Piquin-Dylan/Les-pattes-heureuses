@@ -1524,12 +1524,12 @@
                 </li>
 
                 <li>
-                    <a href="/team"
+                    <a href="{{route('adoption')}}"
                        class="block w-full px-4 py-3 rounded-xl transition-all duration-200 text-center
                        {{ request()->is('team')
                             ? 'bg-white text-[#C67C47] shadow-md'
                             : 'text-white hover:bg-[#D8935E] active:bg-[#B86E39]' }}">
-                        Équipe
+                        Adoption
                     </a>
                 </li>
 

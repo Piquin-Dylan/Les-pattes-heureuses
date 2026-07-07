@@ -1,16 +1,12 @@
 <?php
 
 use App\Models\Animal;
-use Illuminate\Support\Collection;
-use Livewire\Attributes\Computed;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-
 new class extends Component {
     use WithPagination;
-
-    public $animalAdoptable;
 
     public string $searchAnimal = '';
 
@@ -18,44 +14,44 @@ new class extends Component {
 
     public string $filtersStatus = 'tous';
 
-
-    public function mount()
-    {
-        $this->animalAdoptable = Animal::where('status', 'Adoptable')->get();
-    }
-
     public function filter($string): void
     {
         $this->filters = $string;
     }
 
-
-    public function getAnimalsProperty(): \LaravelIdea\Helper\App\Models\_IH_Animal_C|\Illuminate\Pagination\LengthAwarePaginator|array
+    public function getAnimalsProperty()
     {
         return Animal::query()
+            ->when(Gate::denies('manage-animals'), function ($query) {
+                $query->where('status', 'Adoptable');
+            })
             ->when($this->searchAnimal, function ($query) {
                 $query->where(
                     'name',
                     'like',
                     '%' . $this->searchAnimal . '%'
                 );
-            })->when($this->filters !== 'toutes', function ($query) {
+            })
+            ->when($this->filters !== 'toutes', function ($query) {
                 $query->where(
                     'animals.species',
                     $this->filters
                 );
-            })->when($this->filtersStatus !== 'tous', function ($query) {
-                $query->where(
-                    'animals.status',
-                    $this->filtersStatus
-                );
-            })->paginate(6);
-
-
+            })
+            ->when(
+                Gate::allows('manage-animals') && $this->filtersStatus !== 'tous',
+                function ($query) {
+                    $query->where(
+                        'animals.status',
+                        $this->filtersStatus
+                    );
+                }
+            )
+            ->paginate(6);
     }
-
 };
 ?>
+
 <div class="space-y-8">
 
     <div class="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
@@ -70,21 +66,17 @@ new class extends Component {
             </p>
         </div>
 
-        @unless(\Illuminate\Support\Facades\Auth::guest())
+        @can('manage-animals')
             <a
                 href="{{ route('animals.create') }}"
                 class="rounded-2xl bg-[#C67C47] px-6 py-3 text-center font-semibold text-white transition hover:bg-[#b56f3c]">
-
                 Ajouter un animal
             </a>
-        @endunless
-    </div>
-
-    <div>
+        @endcan
 
     </div>
 
-    {{ $this->getAnimalsProperty()->links() }}
+    {{ $this->animals->links() }}
 
     <div class="rounded-3xl border border-gray-200 bg-white p-5 shadow-sm">
 
@@ -101,6 +93,7 @@ new class extends Component {
                     type="text"
                     placeholder="Nom d'un animal..."
                     class="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none transition focus:border-[#C67C47]">
+
             </div>
 
             <div>
@@ -109,37 +102,41 @@ new class extends Component {
                     Espèce
                 </label>
 
-                <select wire:model.live="filters" class="w-full rounded-xl border border-gray-300 px-4 py-3">
+                <select
+                    wire:model.live="filters"
+                    class="w-full rounded-xl border border-gray-300 px-4 py-3">
 
-                    <option>toutes</option>
-                    <option>chat</option>
-                    <option>chien</option>
+                    <option value="toutes">toutes</option>
+                    <option value="chat">chat</option>
+                    <option value="chien">chien</option>
 
                 </select>
 
             </div>
 
-            <div>
-                @unless(\Illuminate\Support\Facades\Auth::guest())
+            @can('manage-animals')
+                <div>
 
-                <label class="mb-2 block text-sm font-medium text-gray-700">
-                    Statut
-                </label>
+                    <label class="mb-2 block text-sm font-medium text-gray-700">
+                        Statut
+                    </label>
 
+                    <select
+                        wire:model.live="filtersStatus"
+                        class="w-full rounded-xl border border-gray-300 px-4 py-3">
 
-                <select wire:model.live="filtersStatus" class="w-full rounded-xl border border-gray-300 px-4 py-3">
+                        <option value="tous">tous</option>
 
-                    <option value="tous">tous</option>
+                        @foreach(\App\Enums\StatusAnimal::cases() as $status)
+                            <option value="{{ $status->value }}">
+                                {{ $status->label() }}
+                            </option>
+                        @endforeach
 
-                    @foreach(\App\Enums\StatusAnimal::cases() as $status)
-                        <option value="{{ $status->value }}">
-                            {{ $status->label() }}
-                        </option>
-                    @endforeach
+                    </select>
 
-                </select>
-                @endunless
-            </div>
+                </div>
+            @endcan
 
         </div>
 
@@ -147,16 +144,9 @@ new class extends Component {
 
     <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
 
-        @if(\Illuminate\Support\Facades\Auth::guest())
-            @foreach($animalAdoptable as $animal)
-                <x-card-animal :animal="$animal"></x-card-animal>
-            @endforeach
-        @else
-            @foreach($this->animals as $animal)
-                <x-card-animal :animal="$animal"></x-card-animal>
-            @endforeach
-        @endif
-
+        @foreach($this->animals as $animal)
+            <x-card-animal :animal="$animal"></x-card-animal>
+        @endforeach
 
     </div>
 

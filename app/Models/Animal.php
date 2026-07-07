@@ -42,4 +42,8 @@ class Animal extends Model
     {
         return $this->belongsTo(Vaccine::class);
     }
+
+    public function adoption() : BelongsTo {
+        return $this->belongsTo(Adoption::class);
+    }
 }
