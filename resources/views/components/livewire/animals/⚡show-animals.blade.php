@@ -10,6 +10,7 @@ use Livewire\WithPagination;
 new class extends Component {
     use WithPagination;
 
+    public $animalAdoptable;
 
     public string $searchAnimal = '';
 
@@ -17,6 +18,11 @@ new class extends Component {
 
     public string $filtersStatus = 'tous';
 
+
+    public function mount()
+    {
+        $this->animalAdoptable = Animal::where('status', 'Adoptable')->get();
+    }
 
     public function filter($string): void
     {
@@ -44,6 +50,8 @@ new class extends Component {
                     $this->filtersStatus
                 );
             })->paginate(6);
+
+
     }
 
 };
@@ -112,10 +120,12 @@ new class extends Component {
             </div>
 
             <div>
+                @unless(\Illuminate\Support\Facades\Auth::guest())
 
                 <label class="mb-2 block text-sm font-medium text-gray-700">
                     Statut
                 </label>
+
 
                 <select wire:model.live="filtersStatus" class="w-full rounded-xl border border-gray-300 px-4 py-3">
 
@@ -128,7 +138,7 @@ new class extends Component {
                     @endforeach
 
                 </select>
-
+                @endunless
             </div>
 
         </div>
@@ -137,9 +147,17 @@ new class extends Component {
 
     <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
 
-        @foreach($this->animals as $animal)
-            <x-card-animal :animal="$animal"></x-card-animal>
-        @endforeach
+        @if(\Illuminate\Support\Facades\Auth::guest())
+            @foreach($animalAdoptable as $animal)
+                <x-card-animal :animal="$animal"></x-card-animal>
+            @endforeach
+        @else
+            @foreach($this->animals as $animal)
+                <x-card-animal :animal="$animal"></x-card-animal>
+            @endforeach
+        @endif
+
+
     </div>
 
 </div>

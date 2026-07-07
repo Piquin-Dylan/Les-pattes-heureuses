@@ -1,3 +1,3 @@
 <x-layout>
-    <livewire:livewire.show-animals></livewire:livewire.show-animals>
+    <livewire:livewire.animals.show-animals></livewire:livewire.animals.show-animals>
 </x-layout>

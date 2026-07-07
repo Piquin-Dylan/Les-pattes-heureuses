@@ -1,3 +1,3 @@
 <x-layout_admin>
-    <livewire:livewire.create-animals></livewire:livewire.create-animals>
+    <livewire:livewire.animals.create-animals></livewire:livewire.animals.create-animals>
 </x-layout_admin>
