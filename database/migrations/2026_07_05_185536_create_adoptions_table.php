@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\AdoptionStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,6 +12,7 @@ return new class extends Migration {
             $table->id();
             $table->string('firstName');
             $table->string('lastName');
+            $table->enum('status', AdoptionStatus::cases());
             $table->string('email');
             $table->string('phone', 30);
             $table->string('message');

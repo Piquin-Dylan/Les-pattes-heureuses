@@ -17,6 +17,7 @@ class Adoption extends Model
         'phone',
         'message',
         'animal_id',
+        'status',
     ];
 
 

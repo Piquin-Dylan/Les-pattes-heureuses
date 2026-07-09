@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Form;
 
+use App\Enums\AdoptionStatus;
 use App\Models\adoption;
 use App\Models\Animal;
 use Livewire\Attributes\Validate;
@@ -37,7 +38,8 @@ class CreateAdoption extends Form
             'email' => $this->email,
             'phone' => $this->phone,
             'message' => $this->message,
-            'animal_id'=> $animal->id
+            'animal_id'=> $animal->id,
+            'status' => AdoptionStatus::Pending->value,
         ]);
     }
 }

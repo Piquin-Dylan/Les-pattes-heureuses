@@ -55,11 +55,11 @@ new class extends Component {
                         {{ $adoption->created_at->format('d/m/Y') }}
                     </td>
 
-                 {{--   <td class="px-6 py-4">
+                   <td class="px-6 py-4">
                             <span class="rounded-full bg-[#C67C47]/10 px-3 py-1 text-sm font-semibold text-[#C67C47]">
                                 {{ $adoption->status }}
                             </span>
-                    </td>--}}
+                    </td>
 
                     <td class="px-6 py-4">
                         <a
