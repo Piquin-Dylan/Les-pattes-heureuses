@@ -63,7 +63,7 @@ new class extends Component {
 
                     <td class="px-6 py-4">
                         <a
-                            href="{{ route('animals', $adoption->id) }}"
+                            href="{{ route('adoption.fiche', $adoption->id)}}"
                             class="font-semibold text-[#C67C47] hover:underline">
                             Voir la demande
                         </a>

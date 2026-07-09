@@ -19,7 +19,7 @@ new class extends Component {
 
             session()->regenerate();
 
-            return $this->redirect('/admin/dashboard');
+            return $this->redirect('/dashboard');
         }
 
         session()->flash(

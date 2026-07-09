@@ -1524,7 +1524,7 @@
                 </li>
 
                 <li>
-                    <a href="{{route('adoption')}}"
+                    <a href="{{route('adoptions')}}"
                        class="block w-full px-4 py-3 rounded-xl transition-all duration-200 text-center
                        {{ request()->is('team')
                             ? 'bg-white text-[#C67C47] shadow-md'

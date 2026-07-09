@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Adoption;
 use Illuminate\Support\Facades\Route;
 
 
@@ -24,6 +25,11 @@ Route::get('adoption/{animal}', function (\App\Models\Animal $animal) {
         'animal' => $animal
     ]);
 })->name('public.adoption');
+
+Route::get('contact', function () {
+    return view('components.client.pages.contact', [
+    ]);
+})->name('public.contact');
 
 
 Route::middleware('auth')->group(function () {
@@ -66,8 +72,14 @@ Route::middleware('auth')->group(function () {
         ]);
     })->name('members.fiche');
 
-    Route::get('/adoption', function () {
+    Route::get('/adoptions', function () {
         return view('components.pages.adoption.adoption_list', [
         ]);
-    })->name('adoption');
+    })->name('adoptions');
+
+    Route::get('/adoptions/{adoption}', function (Adoption $adoption) {
+        return view('components.pages.adoption.adoption_fiche', [
+            'adoption' => $adoption
+        ]);
+    })->name('adoption.fiche');
 });
