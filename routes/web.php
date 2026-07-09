@@ -82,4 +82,8 @@ Route::middleware('auth')->group(function () {
             'adoption' => $adoption
         ]);
     })->name('adoption.fiche');
+
+    Route::get('message', function () {
+        return view('components.pages.message.message_list');
+    })->name('message');
 });

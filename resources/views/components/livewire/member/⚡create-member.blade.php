@@ -115,5 +115,4 @@ new class extends Component {
             </form>
         </section>
     </div>
-
 </div>
