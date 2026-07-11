@@ -4,10 +4,10 @@ namespace App\Enums;
 
 enum AdoptionStatus: string
 {
-    case Pending = 'pending';
-    case InProgress = 'in_progress';
-    case Completed = 'completed';
-    case Cancelled = 'cancelled';
+    case Pending = 'en attente';
+    case InProgress = 'en cours';
+    case Completed = 'réussie';
+    case Cancelled = 'annulée';
 
     public function label(): string
     {

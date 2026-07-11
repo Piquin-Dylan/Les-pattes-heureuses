@@ -7,21 +7,42 @@ new class extends Component {
 
     public string $searchAnimal = '';
 
+    public string $filters = 'toutes';
+
+    public string $filtersStatus = 'tous';
+
+
 
     public function getAdoptionsProperty()
     {
-        return Adoption::query()->when($this->searchAnimal, function ($query) {
-            $query->where(
-                'adoptions.animal_id',
-                'like',
-                '%' . $this->searchAnimal . '%'
-            );
-        })->paginate(6);
+        return Adoption::query()
+            ->when($this->searchAnimal, function ($query) {
+                $query->where('firstName', 'like', '%' . $this->searchAnimal . '%')
+                    ->orWhereHas('animal', function ($query) {
+                        $query->where('name', 'like', '%' . $this->searchAnimal . '%');
+                    });
+            })->when($this->filtersStatus !== 'tous',
+                function ($query) {
+                    $query->where(
+                        'adoptions.status',
+                        $this->filtersStatus
+                    );
+                }
+            )
+            ->paginate(6);
     }
 };
 ?>
 
 <div class="overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm">
+
+    <x-search
+        search="searchAnimal"
+        filter="filters"
+        status="filtersStatus"
+        :enum="\App\Enums\AdoptionStatus::class"
+    />
+
 
     <div class="overflow-x-auto">
         <table class="w-full">
@@ -55,7 +76,7 @@ new class extends Component {
                         {{ $adoption->created_at->format('d/m/Y') }}
                     </td>
 
-                   <td class="px-6 py-4">
+                    <td class="px-6 py-4">
                             <span class="rounded-full bg-[#C67C47]/10 px-3 py-1 text-sm font-semibold text-[#C67C47]">
                                 {{ $adoption->status }}
                             </span>

@@ -2,11 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Enums\AdoptionStatus;
 use App\Enums\CoatAnimal;
 use App\Enums\Members;
 use App\Enums\SexAnimal;
 use App\Enums\SpeciesAnimal;
 use App\Enums\StatusAnimal;
+use App\Models\Adoption;
 use App\Models\Animal;
 use App\Models\Breed;
 use App\Models\User;
@@ -219,6 +221,58 @@ class DatabaseSeeder extends Seeder
 
         foreach ($animals as $animal) {
             Animal::create($animal);
+        }
+
+        $adoptions = [
+            [
+                'firstName' => 'Julie',
+                'lastName' => 'Martin',
+                'email' => 'julie.martin@example.com',
+                'phone' => '0470123456',
+                'message' => 'Je dispose d\'un grand jardin et je recherche un compagnon pour ma famille.',
+                'animal_id' => Animal::where('name', 'Rocky')->first()->id,
+                'status' => AdoptionStatus::Pending,
+            ],
+            [
+                'firstName' => 'Thomas',
+                'lastName' => 'Dubois',
+                'email' => 'thomas.dubois@example.com',
+                'phone' => '0481234567',
+                'message' => 'J\'ai déjà eu plusieurs chats et je souhaite adopter Luna.',
+                'animal_id' => Animal::where('name', 'Luna')->first()->id,
+                'status' => AdoptionStatus::Pending,
+            ],
+            [
+                'firstName' => 'Sophie',
+                'lastName' => 'Leroy',
+                'email' => 'sophie.leroy@example.com',
+                'phone' => '0492345678',
+                'message' => 'Je suis très active et je pense pouvoir offrir un bon foyer.',
+                'animal_id' => Animal::where('name', 'Thor')->first()->id,
+                'status' => AdoptionStatus::Pending,
+            ],
+            [
+                'firstName' => 'Nicolas',
+                'lastName' => 'Simon',
+                'email' => 'nicolas.simon@example.com',
+                'phone' => '0463456789',
+                'message' => 'Je vis en appartement avec beaucoup de temps libre pour m\'occuper d\'un animal.',
+                'animal_id' => Animal::where('name', 'Nala')->first()->id,
+                'status' => AdoptionStatus::Pending,
+            ],
+            [
+                'firstName' => 'Camille',
+                'lastName' => 'Lambert',
+                'email' => 'camille.lambert@example.com',
+                'phone' => '0474567890',
+                'message' => 'Je souhaite offrir une seconde chance à un animal du refuge.',
+                'animal_id' => Animal::where('name', 'Rocky')->first()->id,
+                'status' => AdoptionStatus::Pending,
+            ],
+        ];
+
+        foreach ($adoptions as $adoption) {
+            Adoption::create($adoption);
         }
     }
 
