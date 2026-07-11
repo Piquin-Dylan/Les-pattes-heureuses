@@ -47,7 +47,7 @@ class NewAdoptionNotification extends Notification
             ->line('Téléphone : ' . $this->adoption->phone)
             ->line('Message :')
             ->line($this->adoption->message)
-            ->action('Voir les demandes d’adoption', route('adoption.fiche', $this->adoption))
+            ->action('Voir les détails de la  demande d’adoption', route('adoption.fiche', $this->adoption))
             ->line('Vous pouvez contacter directement le demandeur grâce à son adresse e-mail ou à son numéro de téléphone.');
     }
 

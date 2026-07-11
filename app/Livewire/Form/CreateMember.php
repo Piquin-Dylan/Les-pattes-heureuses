@@ -4,7 +4,10 @@ namespace App\Livewire\Form;
 
 use App\Models\Animal;
 use App\Models\User;
+use App\Notifications\NewAdoptionNotification;
+use App\Notifications\NewMemberNotification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Request;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
@@ -42,7 +45,7 @@ class CreateMember extends Form
 
         $photo = $imageService->storeAnimalImage($this->photo);
 
-      return  User::create([
+        $member = User::create([
             'firstName' => $this->firstName,
             'lastName' => $this->lastName,
             'photo' => $photo,
@@ -51,5 +54,10 @@ class CreateMember extends Form
             'status' => $this->status,
             'phone' => $this->phone,
         ]);
+        Notification::route('mail', [
+            $this->email => $this->firstName,
+        ])->notify(new NewMemberNotification($member));
+
+        return $member;
     }
 }
