@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use http\Message;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -32,12 +33,20 @@ class NewFormContactNotification extends Notification
     /**
      * Get the mail representation of the notification.
      */
-    public function toMail(object $notifiable): MailMessage
+    public function toMail(object $notifiable,): MailMessage
     {
         return (new MailMessage)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
-            ->line('Thank you for using our application!');
+            ->subject('Nouveau message de contact')
+            ->greeting('Bonjour,')
+            ->line('Un nouveau message de contact a été envoyé depuis le site Les Pattes Heureuses.')
+            ->line('Expéditeur : ' . $this->message->firstName . ' ' . $this->message->lastName)
+            ->line('E-mail : ' . $this->message->email)
+            ->line('Téléphone : ' . $this->message->phone)
+            ->line('Objet : ' . $this->message->object)
+            ->line('Message :')
+            ->line($this->message->message)
+            ->action('Voir les messages', route('messages'))
+            ->line('Vous pouvez répondre directement au demandeur à l’aide de son adresse e-mail ou de son numéro de téléphone.');
     }
 
     /**

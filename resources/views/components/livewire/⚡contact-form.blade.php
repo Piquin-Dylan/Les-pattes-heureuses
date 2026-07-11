@@ -12,6 +12,7 @@ new class extends Component {
         $this->form->validate();
         $this->form->submit();
 
+
     }
 };
 ?>

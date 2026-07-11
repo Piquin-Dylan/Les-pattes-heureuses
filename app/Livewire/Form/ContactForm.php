@@ -4,7 +4,9 @@ namespace App\Livewire\Form;
 
 use App\Models\message;
 use App\Models\User;
+use App\Notifications\NewFormContactNotification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Request;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
@@ -35,7 +37,7 @@ class ContactForm extends Form
         $this->validate();
 
 
-        Message::create([
+        $message = Message::create([
             'firstName' => $this->firstName,
             'lastName' => $this->lastName,
             'email' => $this->email,
@@ -43,5 +45,9 @@ class ContactForm extends Form
             'object' => $this->object,
             'message' => $this->message,
         ]);
+
+        Notification::route('mail', [
+            'john.doe@gmail.com' => 'John Doe',
+        ])->notify(new NewFormContactNotification($message));
     }
 }

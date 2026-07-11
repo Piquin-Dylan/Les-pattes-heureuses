@@ -51,5 +51,6 @@ new class extends Component {
             class="block rounded-xl bg-[#C67C47] py-3 text-center font-semibold text-white transition hover:bg-[#b56f3c]">
             Demande d'adoption
         </a>
+        <x-share_animal :animal="$animal"/>
     @endguest
 </div>
