@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Form;
 
-use App\Models\message;
+use App\Models\Message;
 use App\Models\User;
 use App\Notifications\NewFormContactNotification;
 use Illuminate\Support\Facades\Auth;

@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\message;
+use App\Models\Message;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Carbon;
 
 class messageFactory extends Factory
 {
-    protected $model = message::class;
+    protected $model = Message::class;
 
     public function definition(): array
     {
