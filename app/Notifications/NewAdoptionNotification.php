@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\Adoption;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -11,12 +12,14 @@ class NewAdoptionNotification extends Notification
 {
     use Queueable;
 
+    public Adoption $adoption;
+
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct(Adoption $adoption)
     {
-        //
+        $this->adoption = $adoption;
     }
 
     /**
@@ -35,9 +38,17 @@ class NewAdoptionNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
-            ->line('Thank you for using our application!');
+            ->subject('Nouvelle demande d’adoption')
+            ->greeting('Bonjour,')
+            ->line('Une nouvelle demande d’adoption a été envoyée depuis le site Les Pattes Heureuses.')
+            ->line('Animal concerné : ' . $this->adoption->animal->name)
+            ->line('Demandeur : ' . $this->adoption->firstName . ' ' . $this->adoption->lastName)
+            ->line('E-mail : ' . $this->adoption->email)
+            ->line('Téléphone : ' . $this->adoption->phone)
+            ->line('Message :')
+            ->line($this->adoption->message)
+            ->action('Voir les demandes d’adoption', route('adoption.fiche', $this->adoption))
+            ->line('Vous pouvez contacter directement le demandeur grâce à son adresse e-mail ou à son numéro de téléphone.');
     }
 
     /**

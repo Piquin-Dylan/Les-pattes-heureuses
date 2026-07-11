@@ -5,6 +5,9 @@ namespace App\Livewire\Form;
 use App\Enums\AdoptionStatus;
 use App\Models\adoption;
 use App\Models\Animal;
+use App\Notifications\NewAdoptionNotification;
+use App\Notifications\NewFormContactNotification;
+use Illuminate\Support\Facades\Notification;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 
@@ -32,14 +35,19 @@ class CreateAdoption extends Form
         $this->validate();
 
 
-        Adoption::create([
+        $adoption = Adoption::create([
             'firstName' => $this->firstName,
             'lastName' => $this->lastName,
             'email' => $this->email,
             'phone' => $this->phone,
             'message' => $this->message,
-            'animal_id'=> $animal->id,
+            'animal_id' => $animal->id,
             'status' => AdoptionStatus::Pending->value,
         ]);
+
+        Notification::route('mail', [
+            'john.doe@gmail.com' => 'John Doe',
+        ])->notify(new NewAdoptionNotification($adoption));
+
     }
 }
