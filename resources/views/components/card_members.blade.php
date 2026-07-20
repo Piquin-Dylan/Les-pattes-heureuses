@@ -51,11 +51,14 @@
 
         </div>
 
+        @can('is-admin')
+
         <a
             href="{{ route('members.fiche', $member->id) }}"
             class="block rounded-xl bg-[#C67C47] py-3 text-center font-semibold text-white transition hover:bg-[#b56f3c]">
             Voir la fiche
         </a>
+        @endcan
 
     </div>
 

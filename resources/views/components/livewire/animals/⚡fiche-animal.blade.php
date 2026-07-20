@@ -1,17 +1,33 @@
 <?php
 
 use App\Models\Animal;
+use JetBrains\PhpStorm\NoReturn;
 use Livewire\Component;
 
 new class extends Component {
     public Animal $animal;
 
+    public $requestAdoption;
+
+
+    public function mount()
+    {
+        $this->requestAdoption = $this->animal->status;
+    }
 
     public function deleteAnimal(): \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
     {
         if ($this->animal->delete()) {
             return redirect(route('animals'));
         }
+    }
+
+    public function updateStatusAdoption(): void
+    {
+
+        $this->animal->update([
+            'status' => $this->requestAdoption,
+        ]);
     }
 }
 ?>
@@ -36,11 +52,14 @@ new class extends Component {
                 Modifier l'animal
             </a>
 
+            @can('is-admin')
+
             <button wire:click="deleteAnimal"
                     class="rounded-2xl border border-red-500 py-4 font-semibold text-red-500 transition hover:bg-red-50">
 
                 Supprimer
             </button>
+            @endcan
 
 
         </div>
@@ -53,4 +72,10 @@ new class extends Component {
         </a>
         <x-share_animal :animal="$animal"/>
     @endguest
+
+
+    <x-update_status
+        :enum="\App\Enums\StatusAnimal::class"
+        model="requestAdoption"
+        action="updateStatusAdoption"/>
 </div>

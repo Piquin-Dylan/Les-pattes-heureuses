@@ -40,6 +40,8 @@ new class extends Component {
                     description="Gestion de toute l'équipe"/>
 
 
+                @can('is-admin')
+
                 <a
                     href="members/create"
                     class="rounded-2xl bg-[#C67C47] px-6 py-3 text-center font-semibold text-white transition hover:bg-[#b56f3c]">
@@ -47,6 +49,7 @@ new class extends Component {
                     Ajouter un membre
 
                 </a>
+                @endcan
 
             </div>
 

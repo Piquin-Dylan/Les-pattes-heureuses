@@ -7,7 +7,6 @@ new class extends Component {
     public User $member;
 
 
-
     public function deleteMember(): \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
     {
         if ($this->member->delete()) {
@@ -20,13 +19,15 @@ new class extends Component {
 <div class="mx-auto max-w-6xl space-y-6">
 
     <a
-        href="{{ route('members.show') }}"
-        class="inline-flex items-center gap-2 text-sm font-medium text-[#C67C47] hover:underline">
+            href="{{ route('members.show') }}"
+            class="inline-flex items-center gap-2 text-sm font-medium text-[#C67C47] hover:underline">
 
         ← Retour aux membres
 
     </a>
     <x-fiche_member :member="$member"></x-fiche_member>
+
+    @can('is-admin')
 
     <div class="flex flex-col gap-3">
 
@@ -41,4 +42,5 @@ new class extends Component {
             Supprimer
         </button>
     </div>
+    @endcan
 </div>

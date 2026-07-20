@@ -18,5 +18,9 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('manage-animals', function (User $user) {
             return true;
         });
+
+        Gate::define('is-admin', function (User $user) {
+            return $user->status === 'admin';
+        });
     }
 }
