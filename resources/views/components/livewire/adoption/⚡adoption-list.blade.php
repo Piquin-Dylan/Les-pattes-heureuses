@@ -36,12 +36,14 @@ new class extends Component {
 
 <div class="overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm">
 
+{{--
     <x-search
         search="searchAnimal"
         filter="filters"
         status="filtersStatus"
         :enum="\App\Enums\AdoptionStatus::class"
     />
+--}}
 
 
     <div class="overflow-x-auto">
