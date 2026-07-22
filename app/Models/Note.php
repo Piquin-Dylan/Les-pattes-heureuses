@@ -13,11 +13,17 @@ class Note extends Model
     protected $fillable = [
         'user_id',
         'content',
+        'adoption_id'
     ];
 
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function adoption(): BelongsTo
+    {
+        return $this->belongsTo(Adoption::class);
     }
 }

@@ -19,8 +19,7 @@ new class extends Component {
 
     public function save(): void
     {
-        $this->form->validate();
-        $this->form->submit();
+        $this->form->submit($this->adoption);
     }
 
 
@@ -47,5 +46,7 @@ new class extends Component {
     <x-add_note
         function="save"
         model="form.message"
+        :notes="$adoption->notes"
     />
+
 </div>

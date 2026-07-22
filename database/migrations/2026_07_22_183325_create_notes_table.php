@@ -10,7 +10,8 @@ return new class extends Migration {
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
             $table->string('content');
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('adoption_id')->constrained('adoptions');
             $table->timestamps();
         });
     }
