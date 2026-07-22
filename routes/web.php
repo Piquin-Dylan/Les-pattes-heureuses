@@ -86,4 +86,10 @@ Route::middleware('auth')->group(function () {
     Route::get('message', function () {
         return view('components.pages.message.message_list');
     })->name('message');
+
+    Route::get('message/{message}', function (\App\Models\Message $message) {
+        return view('components.pages.message.message_show', [
+            'message' => $message
+        ]);
+    })->name('message.show');
 });

@@ -3,6 +3,11 @@
 namespace App\Livewire\Form;
 
 use App\Models\Animal;
+use App\Models\User;
+use App\Notifications\AnimalSubmittedNotification;
+use App\Notifications\NewMemberNotification;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
@@ -27,7 +32,6 @@ class CreateAnimal extends Form
     #[Validate('required', message: 'Le champs sexe est requis')]
     public string $sexe = "";
 
-    #[Validate('required', message: 'Le champs status est requis')]
     public string $status = "";
 
     #[Validate('required', message: 'Le champs espèces est requis')]
@@ -49,18 +53,32 @@ class CreateAnimal extends Form
 
         $photo = $imageService->storeAnimalImage($this->photo);
 
-        Animal::create([
+        $status = Auth::user()->status === 'volontaire'
+            ? 'En attente'
+            : $this->status;
+
+        $animal = Animal::create([
             'name' => $this->name,
             'description' => $this->description,
             'photo' => $photo,
             'age' => $this->age,
             'sex' => $this->sexe,
-            'status' => $this->status,
+            'status' => $status,
             'species' => $this->species,
             'coat' => $this->coat,
             'breed_id' => $this->raceChoice,
             'vaccine_id' => $this->vaccineChoice,
             'slug' => Str::slug($this->name),
         ]);
+
+        if (Auth::user()->status === 'volontaire') {
+
+            $admins = User::where('status', 'admin')->get();
+
+            Notification::send(
+                $admins,
+                new AnimalSubmittedNotification($animal, Auth::user())
+            );
+        }
     }
 }

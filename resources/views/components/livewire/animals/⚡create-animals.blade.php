@@ -99,15 +99,16 @@ new class extends Component {
                     :options="\App\Enums\SexAnimal::cases()"
                     wire:model.live="form.sexe"
                 />
-
-                <x-form.select
-                    label_name="Statut"
-                    for_label="status"
-                    name="status"
-                    id="status"
-                    :options="\App\Enums\StatusAnimal::cases()"
-                    wire:model.live="form.status"
-                />
+                @can('is-admin')
+                    <x-form.select
+                        label_name="Statut"
+                        for_label="status"
+                        name="status"
+                        id="status"
+                        :options="\App\Enums\StatusAnimal::cases()"
+                        wire:model.live="form.status"
+                    />
+                @endcan
 
                 <x-form.select
                     label_name="Pelage"

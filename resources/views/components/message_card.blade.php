@@ -78,7 +78,7 @@
                 </div>
 
                 <a
-                    href="#"
+                    href="{{route('message.show',$message->id)}}"
                     class="inline-flex w-full items-center justify-center rounded-2xl bg-[#C67C47] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#b56f3c] active:scale-95">
                     Voir le message
                 </a>
