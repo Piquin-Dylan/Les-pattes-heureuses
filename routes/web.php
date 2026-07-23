@@ -92,4 +92,8 @@ Route::middleware('auth')->group(function () {
             'message' => $message
         ]);
     })->name('message.show');
+
+    Route::get('settings', function () {
+        return view('components.pages.settings.settings');
+    })->name('settings');
 });

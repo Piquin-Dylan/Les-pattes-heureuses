@@ -14,15 +14,19 @@ new class extends Component {
 
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        return redirect('/');
     }
 };
 ?>
 
 <div>
-    <form wire:submit="logout" method="POST">
-        <button class="btn_deconnexion" type="submit">
+    <form wire:submit="logout" method="POST" class="mt-auto px-5 pb-6">
+        <button
+            type="submit"
+            class="cursor-pointer w-full rounded-xl px-4 py-3 text-left font-medium text-white/90 transition hover:bg-white/10 hover:text-white">
+
             Déconnexion
+
         </button>
     </form>
 </div>

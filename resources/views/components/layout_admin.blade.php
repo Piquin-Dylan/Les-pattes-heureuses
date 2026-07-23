@@ -1545,6 +1545,14 @@
 
                 <livewire:livewire.logout></livewire:livewire.logout>
 
+                <li class="flex justify-center">
+                    <a id="settings" href="{{ route('settings') }}">
+                        <img
+                            src=""
+                            alt="Photo de profil"
+                            class="w-28 h-28 rounded-full object-cover border-2 border-white/20 hover:border-purple-400 transition">
+                    </a>
+                </li>
             </ul>
 
         </nav>
