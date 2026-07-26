@@ -25,7 +25,6 @@ class Animal extends Model
         'vaccine_id',
         'slug',
     ];
-    public $timestamps = false;
 
 
     public function getRouteKeyName(): string

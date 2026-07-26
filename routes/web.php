@@ -4,6 +4,7 @@ use App\Models\Adoption;
 use Illuminate\Support\Facades\Route;
 
 
+
 Route::get('/', function () {
     return view('components.client.pages.accueil');
 })->name('home');
@@ -100,4 +101,7 @@ Route::middleware('auth')->group(function () {
     Route::get('settings', function () {
         return view('components.pages.settings.settings');
     })->name('settings');
+
+
+
 });
