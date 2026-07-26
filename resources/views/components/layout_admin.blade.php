@@ -1506,7 +1506,7 @@
                 <li>
                     <a href="/animals"
                        class="block w-full px-4 py-3 rounded-xl transition-all duration-200 text-center
-                       {{ request()->is('match')
+                       {{ request()->is('animals')
                             ? 'bg-white text-[#C67C47] shadow-md'
                             : 'text-white hover:bg-[#D8935E] active:bg-[#B86E39]' }}">
                         Animaux
@@ -1516,7 +1516,7 @@
                 <li>
                     <a href="/members"
                        class="block w-full px-4 py-3 rounded-xl transition-all duration-200 text-center
-                       {{ request()->is('train')
+                       {{ request()->is('members')
                             ? 'bg-white text-[#C67C47] shadow-md'
                             : 'text-white hover:bg-[#D8935E] active:bg-[#B86E39]' }}">
                         Membres
@@ -1526,7 +1526,7 @@
                 <li>
                     <a href="{{route('adoptions')}}"
                        class="block w-full px-4 py-3 rounded-xl transition-all duration-200 text-center
-                       {{ request()->is('team')
+                       {{ request()->is('adoptions')
                             ? 'bg-white text-[#C67C47] shadow-md'
                             : 'text-white hover:bg-[#D8935E] active:bg-[#B86E39]' }}">
                         Adoption
@@ -1536,7 +1536,7 @@
                 <li>
                     <a href="/message"
                        class="block w-full px-4 py-3 rounded-xl transition-all duration-200 text-center
-                       {{ request()->is('calendrier')
+                       {{ request()->is('message')
                             ? 'bg-white text-[#C67C47] shadow-md'
                             : 'text-white hover:bg-[#D8935E] active:bg-[#B86E39]' }}">
                         Messages

@@ -6,6 +6,7 @@ use App\Enums\AdoptionStatus;
 use App\Models\adoption;
 use App\Models\Animal;
 use App\Notifications\NewAdoptionNotification;
+use App\Notifications\NewAnimalAdoptionNotification;
 use App\Notifications\NewFormContactNotification;
 use Illuminate\Support\Facades\Notification;
 use Livewire\Attributes\Validate;
@@ -45,9 +46,14 @@ class CreateAdoption extends Form
             'status' => AdoptionStatus::Pending->value,
         ]);
 
+
+        Notification::route('mail', $this->email)
+            ->notify(new NewAnimalAdoptionNotification($adoption));
+
         Notification::route('mail', [
             'john.doe@gmail.com' => 'John Doe',
         ])->notify(new NewAdoptionNotification($adoption));
+
 
     }
 }

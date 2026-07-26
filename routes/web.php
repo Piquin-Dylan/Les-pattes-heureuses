@@ -6,7 +6,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('components.client.pages.accueil');
-})->name('login');
+})->name('home');
+
+Route::get('/animal', function () {
+    return view('components.client.pages.animals');
+})->name('animal');
 
 
 Route::get('/admin', function () {

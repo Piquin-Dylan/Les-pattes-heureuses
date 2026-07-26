@@ -1468,6 +1468,7 @@
 </head>
 <body>
 <header>
+    <x-nav></x-nav>
 </header>
 <main>
     {{$slot}}
