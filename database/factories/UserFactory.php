@@ -2,21 +2,30 @@
 
 namespace Database\Factories;
 
+use App\Enums\Members;
 use App\Models\User;
+use Faker\Factory as FakerFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class UserFactory extends Factory
 {
-    protected static ?string $password;
+    protected $model = User::class;
+
+    protected static ?string $password = null;
 
     public function definition(): array
     {
+        $faker = FakerFactory::create('fr_BE');
+
         return [
-            'firstName' => $this->faker->firstName(),
-            'lastName' => $this->faker->lastName(),
-            'email' => $this->faker->unique()->safeEmail(),
+            'photo' => null,
+            'firstName' => $faker->firstName(),
+            'lastName' => $faker->lastName(),
+            'email' => $faker->unique()->safeEmail(),
+            'phone' => $faker->numerify('04########'),
+            'status' => Members::Volunteer->value,
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
