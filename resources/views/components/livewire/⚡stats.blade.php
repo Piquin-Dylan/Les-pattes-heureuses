@@ -3,7 +3,6 @@
 use App\Enums\StatusAnimal;
 use App\Models\Adoption;
 use App\Models\Animal;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Livewire\Component;
 
 new class extends Component {
@@ -84,97 +83,115 @@ new class extends Component {
 };
 ?>
 
-<div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+<div class="space-y-8">
 
-    <div class="flex items-center gap-4">
-        <button wire:click="previousMonth">
-            ←
+    <div class="flex items-center justify-between">
+
+        <div class="flex items-center gap-6">
+
+            <button
+                wire:click="previousMonth"
+                class="rounded-xl border p-2 hover:bg-gray-100"
+            >
+                ←
+            </button>
+
+            <h1 class="text-2xl font-bold">
+                {{ ucfirst($currentMonth->translatedFormat('F Y')) }}
+            </h1>
+
+            <button
+                wire:click="nextMonth"
+                class="rounded-xl border p-2 hover:bg-gray-100"
+            >
+                →
+            </button>
+
+        </div>
+
+        <button
+            type="button"
+            wire:click="download"
+            class="rounded-2xl bg-[#C67C47] px-6 py-3 text-center font-semibold text-white transition hover:bg-[#b56f3c]"
+        >
+            Télécharger le rapport PDF
         </button>
 
-        <span class="font-bold">
-            {{ ucfirst($currentMonth->translatedFormat('F Y')) }}
-        </span>
-
-        <button wire:click="nextMonth">
-            →
-        </button>
     </div>
 
-    <button type="button" wire:click="download">Download</button>
+
+    <div class="grid gap-6 lg:grid-cols-3">
+
+        <div class="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
+
+            <p class="text-sm text-gray-500">
+                Animaux encore au refuge
+            </p>
+
+            <h2 class="mt-3 text-5xl font-bold">
+                {{ $animalsInShelterCount }}
+            </h2>
+
+            <p class="mt-2 text-sm text-gray-500">
+                Animaux présents actuellement
+            </p>
+
+        </div>
 
 
-    <div class="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
+        <div class="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
 
-        <div class="flex items-center justify-between">
+            <p class="text-sm text-gray-500">
+                Demandes d'adoption
+            </p>
 
-            <div>
+            <h2 class="mt-3 text-5xl font-bold">
+                {{ $adoptionsCount }}
+            </h2>
 
-                <p class="text-sm font-medium text-gray-500">
-                    Animaux encore au refuge
-                </p>
+            <p class="mt-2 text-sm text-gray-500">
+                Reçues durant le mois
+            </p>
 
-                <h2 class="mt-2 text-4xl font-bold text-gray-900">
-                    {{ $animalsInShelterCount }}
-                </h2>
+        </div>
 
-                <p class="mt-2 text-sm text-gray-500">
-                    Animaux actuellement présents au refuge
-                </p>
 
-            </div>
+        <div class="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
+
+            <p class="text-sm text-gray-500">
+                Animaux accueillis
+            </p>
+
+            <h2 class="mt-3 text-5xl font-bold">
+                {{ $animalsWelcomedCount }}
+            </h2>
+
+            <p class="mt-2 text-sm text-gray-500">
+                Accueillis durant le mois
+            </p>
 
         </div>
 
     </div>
 
-    <div class="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
 
-        <div class="flex items-center justify-between">
+    <div class="rounded-3xl border border-gray-200 bg-white shadow-sm">
 
-            <div>
+        <div class="border-b border-gray-200 p-6">
 
-                <p class="text-sm font-medium text-gray-500">
-                    Demandes d'adoption
-                </p>
+            <h2 class="text-xl font-semibold">
+                Demandes d'adoption
+            </h2>
+        </div>
 
-                <h2 class="mt-2 text-4xl font-bold text-gray-900">
-                    {{ $adoptionsCount }}
-                </h2>
+        <div class="p-6">
 
-                <p class="mt-2 text-sm text-gray-500">
-                    Demandes reçues ce mois-ci
-                </p>
-
-            </div>
+            <livewire:livewire.adoption.adoption-list
+                :month="$currentMonth"
+            />
 
         </div>
 
     </div>
-
-    <div class="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
-
-        <div class="flex items-center justify-between">
-
-            <div>
-
-                <p class="text-sm font-medium text-gray-500">
-                    Animaux accueillis
-                </p>
-
-                <h2 class="mt-2 text-4xl font-bold text-gray-900">
-                    {{ $animalsWelcomedCount }}
-                </h2>
-
-                <p class="mt-2 text-sm text-gray-500">
-                    Animaux accueillis ce mois-ci
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <livewire:livewire.adoption.adoption-list/>
 
 </div>

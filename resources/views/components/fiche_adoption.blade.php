@@ -24,7 +24,11 @@
                     Consultez les informations de l'adoptant et de l'animal concerné.
                 </p>
             </div>
-
+            <x-update_status
+                :enum="\App\Enums\AdoptionStatus::class"
+                model="requestAdoption"
+                action="updateStatusAdoption"
+            />
             <span class="w-fit rounded-full bg-[#F6EDE6] px-4 py-2 text-xs font-bold text-[#A65F2F]">
                 {{ $adoption->status }}
             </span>
@@ -57,67 +61,115 @@
                     <div class="flex items-start justify-between gap-3">
 
                         <div>
+
                             <p class="mb-1 text-[0.65rem] font-bold uppercase tracking-wide text-[#C67C47]">
                                 Animal concerné
                             </p>
 
-                            <h2 class="text-xl font-bold text-[#171C2B]">
+                            <h2 class="text-2xl font-bold text-[#171C2B]">
                                 {{ $adoption->animal->name }}
                             </h2>
+
+                            <p class="mt-1 text-sm text-gray-500">
+                                {{ $adoption->animal->breed?->name }}
+                            </p>
+
                         </div>
 
-                        <span
-                            class="shrink-0 rounded-full bg-[#F4EEE9] px-3 py-1 text-[0.65rem] font-bold text-[#A8663A]">
-                            {{ $adoption->animal->status }}
-                        </span>
+                        <span class="rounded-full bg-[#F6EDE6] px-3 py-1 text-xs font-bold text-[#A65F2F]">
+        {{ $adoption->animal->status }}
+    </span>
 
                     </div>
 
-                    <div class="mt-5 grid grid-cols-2 gap-2">
 
-                        <div class="min-w-0 rounded-xl bg-gray-50 p-3">
-                            <span class="block text-[0.65rem] text-gray-400">
-                                Espèce
-                            </span>
+                    <div class="mt-6 rounded-2xl border border-[#E8DDD3] bg-[#FCFAF8] p-4">
 
-                            <strong class="mt-1 block break-words text-sm text-[#202534]">
+
+                            <div class="mb-5">
+
+                                <h3 class="text-sm font-bold uppercase tracking-wide text-[#C67C47]">
+                                    Gestion de l'animal
+                                </h3>
+
+                                <p class="mt-1 text-sm text-gray-500">
+                                    Modifiez le statut de l'animal lorsqu'il change de situation.
+                                </p>
+
+                            </div>
+
+                            <div class="space-y-3">
+
+                                <label class="block text-sm font-semibold text-[#171C2B]">
+                                    Statut de l'animal
+                                </label>
+
+                                <div class="flex items-end gap-3">
+
+                                    <div class="flex-1">
+
+                                        <x-update_status
+                                            :enum="\App\Enums\StatusAnimal::class"
+                                            model="requestAnimal"
+                                            action="updateStatusAnimal"
+                                        />
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                    </div>
+
+
+                    <div class="mt-6 grid grid-cols-2 gap-3">
+
+                        <div class="rounded-xl bg-gray-50 p-3">
+        <span class="block text-[0.65rem] text-gray-400">
+            Espèce
+        </span>
+
+                            <strong class="mt-1 block text-sm text-[#202534]">
                                 {{ ucfirst($adoption->animal->species->value ?? $adoption->animal->species) }}
                             </strong>
                         </div>
 
-                        <div class="min-w-0 rounded-xl bg-gray-50 p-3">
-                            <span class="block text-[0.65rem] text-gray-400">
-                                Sexe
-                            </span>
+                        <div class="rounded-xl bg-gray-50 p-3">
+        <span class="block text-[0.65rem] text-gray-400">
+            Sexe
+        </span>
 
-                            <strong class="mt-1 block break-words text-sm text-[#202534]">
+                            <strong class="mt-1 block text-sm text-[#202534]">
                                 {{ ucfirst($adoption->animal->sex->value ?? $adoption->animal->sex) }}
                             </strong>
                         </div>
 
-                        <div class="min-w-0 rounded-xl bg-gray-50 p-3">
-                            <span class="block text-[0.65rem] text-gray-400">
-                                Race
-                            </span>
+                        <div class="rounded-xl bg-gray-50 p-3">
+        <span class="block text-[0.65rem] text-gray-400">
+            Race
+        </span>
 
-                            <strong class="mt-1 block break-words text-sm text-[#202534]">
+                            <strong class="mt-1 block text-sm text-[#202534]">
                                 {{ $adoption->animal->breed?->name ?? 'Non renseignée' }}
                             </strong>
                         </div>
 
-                        <div class="min-w-0 rounded-xl bg-gray-50 p-3">
-                            <span class="block text-[0.65rem] text-gray-400">
-                                Âge
-                            </span>
+                        <div class="rounded-xl bg-gray-50 p-3">
+        <span class="block text-[0.65rem] text-gray-400">
+            Âge
+        </span>
 
-                            <strong class="mt-1 block break-words text-sm text-[#202534]">
+                            <strong class="mt-1 block text-sm text-[#202534]">
                                 {{ \Carbon\Carbon::parse($adoption->animal->age)->age }} ans
                             </strong>
                         </div>
 
                     </div>
 
-                    <p class="mt-5 border-t border-gray-100 pt-5 text-sm leading-6 text-gray-500">
+
+                    <p class="mt-6 border-t border-gray-100 pt-6 text-sm leading-6 text-gray-500">
                         {{ $adoption->animal->description }}
                     </p>
 

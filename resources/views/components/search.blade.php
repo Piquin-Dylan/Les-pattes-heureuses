@@ -3,12 +3,11 @@
     'filter',
     'status',
     'enum',
-    'pendingOnly',
-    'pendingCount',
+    'pendingOnly'=>null,
+    'pendingCount'=>null,
 ])
 
 <div class="space-y-5">
-
 
 
     <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
@@ -93,7 +92,8 @@
 
     </div>
     @can('manage-animals')
-        <div class="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-amber-200 bg-amber-50 p-4">
+        <div
+            class="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-amber-200 bg-amber-50 p-4">
 
             <label class="flex cursor-pointer items-center gap-3">
 

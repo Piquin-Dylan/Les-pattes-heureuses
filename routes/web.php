@@ -3,8 +3,6 @@
 use App\Models\Adoption;
 use Illuminate\Support\Facades\Route;
 
-
-
 Route::get('/', function () {
     return view('components.client.pages.accueil');
 })->name('home');
