@@ -4,7 +4,14 @@ use App\Models\Adoption;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('components.client.pages.accueil');
+    return view('components.client.pages.accueil', [
+        'animaux' => \App\Models\Animal::where('status', \App\Enums\StatusAnimal::ADOPTABLE->value)
+            ->latest()
+            ->take(4)
+            ->get(),
+        'animauxAdoptables' => \App\Models\Animal::where('status', \App\Enums\StatusAnimal::ADOPTABLE->value)->count(),
+        'animauxAdoptes' => \App\Models\Animal::where('status', \App\Enums\StatusAnimal::ADOPTED->value)->count(),
+    ]);
 })->name('home');
 
 Route::get('/animal', function () {
