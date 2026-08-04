@@ -18,7 +18,8 @@ new class extends Component {
 ?>
 
 <div>
-    <div class="w-full px-4 py-6">
+    <div class="px-8 py-20">
+        <div class="mx-auto max-w-7xl">
 
         <section class="mb-8">
             <x-page-header
@@ -128,5 +129,6 @@ new class extends Component {
             </form>
         </section>
 
+        </div>
     </div>
 </div>
