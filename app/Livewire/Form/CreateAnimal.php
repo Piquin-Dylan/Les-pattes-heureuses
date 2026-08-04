@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Form;
 
+use App\Jobs\ProcessUploadedImage;
 use App\Models\Animal;
 use App\Models\User;
 use App\Notifications\AnimalSubmittedNotification;
@@ -11,7 +12,6 @@ use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
-use App\Services\ImageService;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class CreateAnimal extends Form
@@ -47,11 +47,11 @@ class CreateAnimal extends Form
     public string $vaccineChoice = "";
 
 
-    public function submit(ImageService $imageService): void
+    public function submit(): void
     {
         $this->validate();
 
-        $photo = $imageService->storeAnimalImage($this->photo);
+        $tmpPath = $this->photo->store('uploads/tmp', 'local');
 
         $status = Auth::user()->status === 'volontaire'
             ? 'En attente'
@@ -60,7 +60,7 @@ class CreateAnimal extends Form
         $animal = Animal::create([
             'name' => $this->name,
             'description' => $this->description,
-            'photo' => $photo,
+            'photo' => null,
             'age' => $this->age,
             'sex' => $this->sexe,
             'status' => $status,
@@ -70,6 +70,8 @@ class CreateAnimal extends Form
             'vaccine_id' => $this->vaccineChoice,
             'slug' => Str::slug($this->name),
         ]);
+
+        ProcessUploadedImage::dispatch($animal, $tmpPath);
 
         if (Auth::user()->status === 'volontaire') {
 

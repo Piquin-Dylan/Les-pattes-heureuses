@@ -1,7 +1,6 @@
 <?php
 
 use App\Livewire\Form\CreateMember;
-use App\Services\ImageService;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -10,9 +9,9 @@ new class extends Component {
 
     public CreateMember $form;
 
-    public function save(ImageService $imageService)
+    public function save()
     {
-        $member = $this->form->submit($imageService);
+        $member = $this->form->submit();
 
         return redirect()->route('members.fiche', [
             'member' => $member->id

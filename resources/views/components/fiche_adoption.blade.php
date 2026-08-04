@@ -44,7 +44,7 @@
 
                     @if($adoption->animal->photo)
                         <img
-                            src="{{ asset('storage/' . $adoption->animal->photo) }}"
+                            src="{{ asset('storage/animals/'.$adoption->animal->photo.'/640.webp') }}"
                             alt="{{ $adoption->animal->name }}"
                             class="h-full w-full object-cover"
                         >

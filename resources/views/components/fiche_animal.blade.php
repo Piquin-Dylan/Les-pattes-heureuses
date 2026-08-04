@@ -2,15 +2,21 @@
 
     <div class="flex justify-center items-center mt-8">
         <div class="w-32 aspect-square overflow-hidden rounded-full">
-            <img
-                src="{{ asset('storage/animals/'.$animal->photo.'/640.webp') }}"
-                srcset="
-            {{ asset('storage/animals/'.$animal->photo.'/320.webp') }} 320w,
-            {{ asset('storage/animals/'.$animal->photo.'/640.webp') }} 640w,
-            {{ asset('storage/animals/'.$animal->photo.'/1280.webp') }} 1280w"
-                sizes="128px"
-                alt="{{ $animal->name }}"
-                class="w-full h-full object-cover">
+            @if($animal->photo)
+                <img
+                    src="{{ asset('storage/animals/'.$animal->photo.'/640.webp') }}"
+                    srcset="
+                {{ asset('storage/animals/'.$animal->photo.'/320.webp') }} 320w,
+                {{ asset('storage/animals/'.$animal->photo.'/640.webp') }} 640w,
+                {{ asset('storage/animals/'.$animal->photo.'/1024.webp') }} 1024w"
+                    sizes="128px"
+                    alt="{{ $animal->name }}"
+                    class="w-full h-full object-cover">
+            @else
+                <div class="flex h-full w-full items-center justify-center bg-[#FBF4EC]">
+                    <span class="text-4xl" aria-hidden="true">🐾</span>
+                </div>
+            @endif
         </div>
     </div>
     <div class="space-y-6 p-6">

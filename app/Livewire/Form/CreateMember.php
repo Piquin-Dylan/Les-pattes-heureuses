@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Form;
 
+use App\Jobs\ProcessUploadedImage;
 use App\Models\Animal;
 use App\Models\User;
 use App\Notifications\NewAdoptionNotification;
@@ -11,7 +12,6 @@ use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Request;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
-use App\Services\ImageService;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class CreateMember extends Form
@@ -39,21 +39,24 @@ class CreateMember extends Form
     public string $phone = "";
 
 
-    public function submit(ImageService $imageService): User
+    public function submit(): User
     {
         $this->validate();
 
-        $photo = $imageService->storeAnimalImage($this->photo);
+        $tmpPath = $this->photo->store('uploads/tmp', 'local');
 
         $member = User::create([
             'firstName' => $this->firstName,
             'lastName' => $this->lastName,
-            'photo' => $photo,
+            'photo' => null,
             'email' => $this->email,
             'password' => $this->password,
             'status' => $this->status,
             'phone' => $this->phone,
         ]);
+
+        ProcessUploadedImage::dispatch($member, $tmpPath);
+
         Notification::route('mail', [
             $this->email => $this->firstName,
         ])->notify(new NewMemberNotification($member));

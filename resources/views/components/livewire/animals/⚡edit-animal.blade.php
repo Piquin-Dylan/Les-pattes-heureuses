@@ -2,7 +2,6 @@
 
 use App\Livewire\Form\EditAnimal;
 use App\Models\Animal;
-use App\Services\ImageService;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -23,9 +22,9 @@ new class extends Component {
         $this->vaccine = collect([]);
     }
 
-    public function save(ImageService $imageService)
+    public function save()
     {
-        $animal = $this->form->update($imageService);
+        $animal = $this->form->update();
 
         return redirect()->route('animals.show', [
             'animal' => $animal->id
@@ -150,7 +149,7 @@ new class extends Component {
                         </p>
 
                         <img
-                            src="{{ asset('storage/' . $form->currentPhoto) }}"
+                            src="{{ asset('storage/animals/'.$form->currentPhoto.'/320.webp') }}"
                             alt="Photo actuelle de {{ $form->name }}"
                             class="h-32 w-32 rounded-2xl object-cover"
                         >

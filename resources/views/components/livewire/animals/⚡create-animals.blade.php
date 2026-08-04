@@ -1,7 +1,6 @@
 <?php
 
 use App\Livewire\Form\CreateAnimal;
-use App\Services\ImageService;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -28,10 +27,10 @@ new class extends Component {
         $this->vaccine = \App\Models\Vaccine::where('species', $this->form->species)->get();
     }
 
-    public function save(ImageService $imageService): void
+    public function save(): void
     {
         $this->form->validate();
-        $this->form->submit($imageService);
+        $this->form->submit();
     }
 
     public function updated($property): void

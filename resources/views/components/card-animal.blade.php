@@ -4,11 +4,25 @@
 
     <div class="relative">
 
-        <img
-            src="{{ asset('storage/animals/'.$animal->photo.'/640.webp') }}"
-            alt="{{ $animal->name }}"
-            itemprop="image"
-            class="aspect-square w-full object-cover">
+        @if($animal->photo)
+            <img
+                src="{{ asset('storage/animals/'.$animal->photo.'/640.webp') }}"
+                srcset="
+                    {{ asset('storage/animals/'.$animal->photo.'/320.webp') }} 320w,
+                    {{ asset('storage/animals/'.$animal->photo.'/640.webp') }} 640w,
+                    {{ asset('storage/animals/'.$animal->photo.'/1024.webp') }} 1024w,
+                    {{ asset('storage/animals/'.$animal->photo.'/1600.webp') }} 1600w"
+                sizes="(min-width: 1280px) 25vw, (min-width: 640px) 50vw, 100vw"
+                alt="{{ $animal->name }}"
+                itemprop="image"
+                loading="lazy"
+                decoding="async"
+                class="aspect-square w-full object-cover">
+        @else
+            <div class="flex aspect-square w-full items-center justify-center bg-[#FBF4EC]">
+                <span class="text-6xl" aria-hidden="true">🐾</span>
+            </div>
+        @endif
 
         <span
             class="absolute left-4 top-4 rounded-full bg-[#C67C47] px-3 py-1 text-xs font-semibold text-white">

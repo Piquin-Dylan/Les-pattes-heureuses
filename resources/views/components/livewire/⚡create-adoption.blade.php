@@ -39,7 +39,7 @@ new class extends Component {
 
                     @if($animal->photo)
                         <img
-                            src="{{ asset('storage/' . $animal->photo) }}"
+                            src="{{ asset('storage/animals/'.$animal->photo.'/640.webp') }}"
                             alt="Photo de {{ $animal->name }}"
                             class="h-full w-full object-cover"
                         >

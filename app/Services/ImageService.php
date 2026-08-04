@@ -2,10 +2,9 @@
 
 namespace App\Services;
 
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Intervention\Image\Laravel\Facades\Image;
+use Intervention\Image\ImageManager;
 
 class ImageService
 {
@@ -17,13 +16,24 @@ class ImageService
         '1600' => 1600,
     ];
 
-    public function storeAnimalImage(UploadedFile $file): string
+    protected ImageManager $manager;
+
+    public function __construct()
+    {
+        // Built directly rather than via the "image" container binding:
+        // Laravel's own bundled Illuminate\Image component registers that
+        // same binding name and silently shadows Intervention's, which
+        // resolves the wrong (incompatible) manager.
+        $this->manager = ImageManager::gd();
+    }
+
+    public function storeAnimalImage(string $path): string
     {
         $directory = (string) Str::uuid();
 
         Storage::disk('public')->makeDirectory("animals/{$directory}");
 
-        Image::read($file)
+        $this->manager->read($path)
             ->toWebp(90)
             ->save(
                 storage_path("app/public/animals/{$directory}/original.webp")
@@ -31,7 +41,7 @@ class ImageService
 
         foreach ($this->sizes as $filename => $width) {
 
-            Image::read($file)
+            $this->manager->read($path)
                 ->scale(width: $width)
                 ->toWebp(85)
                 ->save(
@@ -42,8 +52,12 @@ class ImageService
         return $directory;
     }
 
-    public function deleteAnimalImage(string $directory): void
+    public function deleteAnimalImage(?string $directory): void
     {
+        if (! $directory) {
+            return;
+        }
+
         Storage::disk('public')->deleteDirectory("animals/{$directory}");
     }
 }

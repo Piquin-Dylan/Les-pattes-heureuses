@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Form;
 
+use App\Jobs\ProcessUploadedImage;
 use App\Models\Animal;
-use App\Services\ImageService;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
@@ -58,7 +58,7 @@ class EditAnimal extends Form
     }
 
 
-    public function update(ImageService $imageService): Animal
+    public function update(): Animal
     {
         $this->validate();
 
@@ -72,11 +72,13 @@ class EditAnimal extends Form
             'coat' => $this->coat,
         ];
 
-        if ($this->photo) {
-            $data['photo'] = $imageService->storeAnimalImage($this->photo);
-        }
-
         $this->animal->update($data);
+
+        if ($this->photo) {
+            $tmpPath = $this->photo->store('uploads/tmp', 'local');
+
+            ProcessUploadedImage::dispatch($this->animal, $tmpPath, $this->currentPhoto);
+        }
 
         return $this->animal;
     }
