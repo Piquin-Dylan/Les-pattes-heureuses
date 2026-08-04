@@ -4,18 +4,19 @@
 ])
 
 <section class="relative overflow-hidden bg-[#FBF4EC] px-8 py-20">
+    <h2 class="sr-only">
+        Les <span class="text-[#C67C47]">section présentation</span>
+    </h2>
     <div class="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-[#C67C47]/10 blur-3xl"></div>
     <div class="pointer-events-none absolute -bottom-32 -left-24 h-96 w-96 rounded-full bg-[#BC8451]/10 blur-3xl"></div>
 
     <div class="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
         <div>
-            <span class="inline-block rounded-full bg-[#C67C47]/10 px-4 py-1.5 text-sm font-semibold text-[#C67C47]">
-                🐾 Refuge animalier
-            </span>
 
-            <h1 class="mt-6 text-4xl font-bold text-gray-900 sm:text-5xl lg:text-6xl">
+
+            <span class="mt-6 text-4xl font-bold text-gray-900 sm:text-5xl lg:text-6xl">
                 Les <span class="text-[#C67C47]">pattes heureuses</span>
-            </h1>
+            </span>
 
             <p class="mt-6 max-w-xl text-lg text-gray-600">
                 Nous prenons soin de chiens, chats et autres compagnons en attente d'un foyer,
@@ -33,16 +34,6 @@
                 </a>
             </div>
 
-            <div class="mt-10 flex gap-10">
-                <div>
-                    <p class="text-3xl font-bold text-gray-900">{{ $adoptables }}</p>
-                    <p class="text-sm text-gray-500">animaux à l'adoption</p>
-                </div>
-                <div>
-                    <p class="text-3xl font-bold text-gray-900">{{ $adoptes }}</p>
-                    <p class="text-sm text-gray-500">familles heureuses</p>
-                </div>
-            </div>
         </div>
 
         <div class="relative hidden lg:block">

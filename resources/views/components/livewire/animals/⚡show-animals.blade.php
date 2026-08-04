@@ -102,6 +102,8 @@ new class extends Component {
 
     </div>
 
+    <h2 class="sr-only">Liste des animaux</h2>
+
     <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
 
         @foreach($this->animals as $animal)

@@ -1,4 +1,5 @@
-<div
+<article
+    itemscope itemtype="https://schema.org/Product"
     class="group overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
 
     <div class="relative">
@@ -6,6 +7,7 @@
         <img
             src="{{ asset('storage/animals/'.$animal->photo.'/640.webp') }}"
             alt="{{ $animal->name }}"
+            itemprop="image"
             class="aspect-square w-full object-cover">
 
         <span
@@ -17,10 +19,10 @@
     </div>
     <div class="space-y-4 p-5">
         <div>
-            <h2 class="text-xl font-bold text-gray-900">
+            <h3 class="text-xl font-bold text-gray-900" itemprop="name">
 
                 {{ $animal->name }}
-            </h2>
+            </h3>
             <p class="text-sm text-gray-500">
 
                 {{ $animal->breed?->name }}
@@ -34,7 +36,7 @@
                     Espèce
                 </p>
 
-                <p class="font-medium">
+                <p class="font-medium" itemprop="category">
 
                     {{ ucfirst($animal->species) }}
 
@@ -66,4 +68,4 @@
         </a>
 
     </div>
-</div>
+</article>

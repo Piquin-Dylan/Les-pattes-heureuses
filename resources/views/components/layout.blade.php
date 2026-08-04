@@ -1467,6 +1467,7 @@
     @endif
 </head>
 <body>
+<h1 class="sr-only">Les pattes heureuses</h1>
 <header>
     <x-nav></x-nav>
 </header>
