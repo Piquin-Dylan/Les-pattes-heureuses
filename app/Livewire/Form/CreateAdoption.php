@@ -51,7 +51,7 @@ class CreateAdoption extends Form
             ->notify(new NewAnimalAdoptionNotification($adoption));
 
         Notification::route('mail', [
-            'john.doe@gmail.com' => 'John Doe',
+            config('mail.from.address') => config('mail.from.name'),
         ])->notify(new NewAdoptionNotification($adoption));
 
 

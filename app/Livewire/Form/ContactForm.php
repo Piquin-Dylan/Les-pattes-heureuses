@@ -47,7 +47,7 @@ class ContactForm extends Form
         ]);
 
         Notification::route('mail', [
-            'john.doe@gmail.com' => 'John Doe',
+            config('mail.from.address') => config('mail.from.name'),
         ])->notify(new NewFormContactNotification($message));
     }
 }
