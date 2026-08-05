@@ -1474,6 +1474,7 @@
     class="bg-[#F8F6F3] text-[#2B2B2B]">
 
 <h1 class="sr-only">Les Pattes Heureuses</h1>
+<x-toast/>
 
 <div class="flex min-h-screen">
 

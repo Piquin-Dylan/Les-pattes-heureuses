@@ -1468,6 +1468,7 @@
 </head>
 <body>
 <h1 class="sr-only">Les pattes heureuses</h1>
+<x-toast/>
 <header>
     <x-nav></x-nav>
 </header>

@@ -31,6 +31,8 @@ new class extends Component {
     {
         $this->form->validate();
         $this->form->submit();
+
+        $this->dispatch('toast', message: 'La fiche de l\'animal a bien été créée !', type: 'success');
     }
 
     public function updated($property): void

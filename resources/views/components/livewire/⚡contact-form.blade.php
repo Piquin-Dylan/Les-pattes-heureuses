@@ -12,7 +12,9 @@ new class extends Component {
         $this->form->validate();
         $this->form->submit();
 
+        $this->form->reset();
 
+        $this->dispatch('toast', message: 'Votre message a bien été envoyé !', type: 'success');
     }
 };
 ?>
@@ -32,8 +34,7 @@ new class extends Component {
 
             <form
                 wire:submit.prevent="save"
-                class="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm lg:col-span-2"
-            >
+                class="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm lg:col-span-2">
 
                 <h2 class="text-xl font-semibold text-gray-800">
                     Vos informations
@@ -136,7 +137,7 @@ new class extends Component {
             <x-contact_informations></x-contact_informations>
 
         </div>
-
+          <x-toast></x-toast>
         </div>
     </div>
 </div>
