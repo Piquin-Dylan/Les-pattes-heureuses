@@ -14,9 +14,9 @@
 
         <div class="mb-5">
 
-            <h2 class="text-lg font-semibold text-gray-900">
+            <span class="text-lg font-semibold text-gray-900">
                 Recherche et filtres
-            </h2>
+            </span>
 
             <p class="text-sm text-gray-500">
                 Retrouvez rapidement un animal grâce aux filtres ci-dessous.

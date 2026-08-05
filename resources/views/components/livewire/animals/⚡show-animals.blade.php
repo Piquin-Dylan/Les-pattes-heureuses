@@ -66,9 +66,9 @@ new class extends Component {
     <div class="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
 
         <div>
-            <h1 class="text-3xl font-bold text-gray-900">
+            <h2 class="text-3xl font-bold text-gray-900">
                 Tous les animaux
-            </h1>
+            </h2>
 
             <p class="mt-1 text-gray-500">
                 Retrouvez tous les animaux disponibles à l'adoption.

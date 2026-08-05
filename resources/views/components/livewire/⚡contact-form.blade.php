@@ -26,17 +26,24 @@ new class extends Component {
                 title="Nous contacter"
                 description="Une question ? Envoyez-nous un message, nous vous répondrons dès que possible."
             />
+        </section>
+
+        <div class="grid gap-8 lg:grid-cols-3">
 
             <form
                 wire:submit.prevent="save"
-                class="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm"
+                class="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm lg:col-span-2"
             >
 
-                <h2 class="mb-6 text-xl font-semibold text-gray-800">
+                <h2 class="text-xl font-semibold text-gray-800">
                     Vos informations
                 </h2>
 
-                <div class="grid gap-5 lg:grid-cols-2">
+                <p class="mt-1 text-sm text-gray-500">
+                    Merci de remplir l'ensemble des champs afin que nous puissions vous répondre au mieux.
+                </p>
+
+                <div class="mt-6 grid gap-5 sm:grid-cols-2">
 
                     <x-form.input
                         label_name="Nom"
@@ -74,18 +81,16 @@ new class extends Component {
                         wire:model.live="form.phone"
                     />
 
-                </div>
-
-                <div class="mt-6">
-
-                    <x-form.input
-                        label_name="Objet"
-                        for_label="object"
-                        type="text"
-                        id="object"
-                        name="object"
-                        wire:model.live="form.object"
-                    />
+                    <div class="sm:col-span-2">
+                        <x-form.input
+                            label_name="Objet"
+                            for_label="object"
+                            type="text"
+                            id="object"
+                            name="object"
+                            wire:model.live="form.object"
+                        />
+                    </div>
 
                 </div>
 
@@ -115,7 +120,7 @@ new class extends Component {
 
                 </div>
 
-                <div class="mt-10 flex justify-end">
+                <div class="mt-8 flex justify-end border-t border-gray-100 pt-6">
 
                     <button
                         type="submit"
@@ -127,7 +132,10 @@ new class extends Component {
                 </div>
 
             </form>
-        </section>
+
+            <x-contact_informations></x-contact_informations>
+
+        </div>
 
         </div>
     </div>
