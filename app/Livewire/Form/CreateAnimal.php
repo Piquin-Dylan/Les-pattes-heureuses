@@ -47,7 +47,7 @@ class CreateAnimal extends Form
     public string $vaccineChoice = "";
 
 
-    public function submit(): void
+    public function submit(): Animal
     {
         $this->validate();
 
@@ -82,5 +82,7 @@ class CreateAnimal extends Form
                 new AnimalSubmittedNotification($animal, Auth::user())
             );
         }
+
+        return $animal;
     }
 }

@@ -2,11 +2,12 @@
 
 <div
     x-data="{
-        show: false,
-        message: '',
+        show: {{ session()->has('success') ? 'true' : 'false' }},
+        message: @js(session('success', '')),
         type: 'success',
         timeout: null,
     }"
+    x-init="if (show) { timeout = setTimeout(() => show = false, 4000) }"
     x-on:toast.window="
         message = $event.detail.message;
         type = $event.detail.type ?? 'success';

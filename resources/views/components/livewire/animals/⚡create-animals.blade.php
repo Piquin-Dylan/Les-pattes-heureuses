@@ -27,12 +27,14 @@ new class extends Component {
         $this->vaccine = \App\Models\Vaccine::where('species', $this->form->species)->get();
     }
 
-    public function save(): void
+    public function save()
     {
         $this->form->validate();
-        $this->form->submit();
+        $animal = $this->form->submit();
 
-        $this->dispatch('toast', message: 'La fiche de l\'animal a bien été créée !', type: 'success');
+        session()->flash('success', 'La fiche de l\'animal a bien été créée !');
+
+        return redirect()->route('animals.show', $animal);
     }
 
     public function updated($property): void

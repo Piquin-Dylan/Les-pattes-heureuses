@@ -26,9 +26,7 @@ new class extends Component {
     {
         $animal = $this->form->update();
 
-        return redirect()->route('animals.show', [
-            'animal' => $animal->id
-        ]);
+        return redirect()->route('animals.show', $animal);
     }
 };
 ?>
