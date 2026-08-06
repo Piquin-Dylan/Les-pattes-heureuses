@@ -17,4 +17,13 @@ class Message extends Model
         'object',
         'message',
     ];
+
+    protected $casts = [
+        'read_at' => 'datetime',
+    ];
+
+    public function scopeUnread($query)
+    {
+        return $query->whereNull('read_at');
+    }
 }

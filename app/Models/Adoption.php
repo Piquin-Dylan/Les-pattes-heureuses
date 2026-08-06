@@ -32,4 +32,9 @@ class Adoption extends Model
     {
         return $this->hasMany(Note::class);
     }
+
+    public function scopePending($query)
+    {
+        return $query->where('status', \App\Enums\AdoptionStatus::Pending->value);
+    }
 }

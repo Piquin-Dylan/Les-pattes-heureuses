@@ -1506,11 +1506,12 @@
 
                 <li>
                     <a href="/animals"
-                       class="block w-full px-4 py-3 rounded-xl transition-all duration-200 text-center
+                       class="flex w-full items-center justify-center gap-2 px-4 py-3 rounded-xl transition-all duration-200 text-center
                        {{ request()->is('animals')
                             ? 'bg-white text-[#C67C47] shadow-md'
                             : 'text-white hover:bg-[#D8935E] active:bg-[#B86E39]' }}">
                         Animaux
+                        <livewire:livewire.nav-badge type="animals" />
                     </a>
                 </li>
 
@@ -1526,21 +1527,23 @@
 
                 <li>
                     <a href="{{route('adoptions')}}"
-                       class="block w-full px-4 py-3 rounded-xl transition-all duration-200 text-center
+                       class="flex w-full items-center justify-center gap-2 px-4 py-3 rounded-xl transition-all duration-200 text-center
                        {{ request()->is('adoptions')
                             ? 'bg-white text-[#C67C47] shadow-md'
                             : 'text-white hover:bg-[#D8935E] active:bg-[#B86E39]' }}">
                         Adoption
+                        <livewire:livewire.nav-badge type="adoptions" />
                     </a>
                 </li>
 
                 <li>
                     <a href="/message"
-                       class="block w-full px-4 py-3 rounded-xl transition-all duration-200 text-center
+                       class="flex w-full items-center justify-center gap-2 px-4 py-3 rounded-xl transition-all duration-200 text-center
                        {{ request()->is('message')
                             ? 'bg-white text-[#C67C47] shadow-md'
                             : 'text-white hover:bg-[#D8935E] active:bg-[#B86E39]' }}">
                         Messages
+                        <livewire:livewire.nav-badge type="messages" />
                     </a>
                 </li>
 

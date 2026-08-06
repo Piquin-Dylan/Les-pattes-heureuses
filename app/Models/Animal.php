@@ -45,4 +45,9 @@ class Animal extends Model
     public function adoption() : BelongsTo {
         return $this->belongsTo(Adoption::class);
     }
+
+    public function scopePending($query)
+    {
+        return $query->where('status', \App\Enums\StatusAnimal::PENDING->value);
+    }
 }

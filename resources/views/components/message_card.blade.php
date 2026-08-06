@@ -25,10 +25,12 @@
                                 {{ $message->lastName }}
                             </h2>
 
-                            <span
-                                class="w-fit rounded-full bg-[#C67C47]/10 px-3 py-1 text-[0.65rem] font-semibold text-[#C67C47]">
-                                                Nouveau message
-                                            </span>
+                            @if(is_null($message->read_at))
+                                <span
+                                    class="w-fit rounded-full bg-[#C67C47]/10 px-3 py-1 text-[0.65rem] font-semibold text-[#C67C47]">
+                                                    Nouveau message
+                                                </span>
+                            @endif
 
                         </div>
 

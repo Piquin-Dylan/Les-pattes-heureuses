@@ -6,6 +6,13 @@ new class extends Component {
 
     public \App\Models\Message $message;
 
+    public function mount(): void
+    {
+        if (is_null($this->message->read_at)) {
+            $this->message->update(['read_at' => now()]);
+        }
+    }
+
 };
 ?>
 <div class="mx-auto max-w-5xl space-y-6">
