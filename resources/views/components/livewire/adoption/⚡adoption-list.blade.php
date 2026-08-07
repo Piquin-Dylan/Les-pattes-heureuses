@@ -2,8 +2,10 @@
 
 use App\Models\Adoption;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 new class extends Component {
+    use WithPagination;
 
     public string $searchAnimal = '';
 
@@ -29,7 +31,7 @@ new class extends Component {
                     );
                 }
             )
-            ->paginate(6);
+            ->paginate(2);
     }
 };
 ?>
@@ -98,5 +100,7 @@ new class extends Component {
 
         </table>
     </div>
+
+    {{ $this->adoptions->links('components.custom') }}
 
 </div>

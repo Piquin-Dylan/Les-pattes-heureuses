@@ -30,7 +30,7 @@ new class extends Component {
                     );
                 });
             })
-            ->paginate(6);
+            ->paginate(2);
     }
 };
 ?>
@@ -83,7 +83,7 @@ new class extends Component {
 
             </div>
 
-            {{ $this->members->links() }}
+            {{ $this->members->links('components.custom') }}
 
         </div>
     </section>

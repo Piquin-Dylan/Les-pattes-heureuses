@@ -11,7 +11,7 @@ new class extends Component {
     {
         return Message::query()
             ->latest()
-            ->paginate(6);
+            ->paginate(2);
     }
 
 };
@@ -35,7 +35,7 @@ new class extends Component {
             @endforeach
 
             <div class="mt-6">
-                {{ $this->messages->links() }}
+                {{ $this->messages->links('components.custom') }}
             </div>
         @endif
 
