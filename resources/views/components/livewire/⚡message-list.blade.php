@@ -2,14 +2,16 @@
 
 use App\Models\Message;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 new class extends Component {
+    use WithPagination;
 
     public function getMessagesProperty()
     {
         return Message::query()
             ->latest()
-            ->get();
+            ->paginate(6);
     }
 
 };
@@ -31,6 +33,10 @@ new class extends Component {
             @foreach($this->messages as $message)
                 <x-message_card :message="$message"></x-message_card>
             @endforeach
+
+            <div class="mt-6">
+                {{ $this->messages->links() }}
+            </div>
         @endif
 
     </section>

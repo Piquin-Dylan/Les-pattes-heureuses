@@ -20,6 +20,12 @@ new class extends Component {
     public function filter($string): void
     {
         $this->filters = $string;
+        $this->resetPage();
+    }
+
+    public function updatedSearchAnimal(): void
+    {
+        $this->resetPage();
     }
 
     public function updatedPendingOnly(): void
@@ -61,55 +67,57 @@ new class extends Component {
 };
 ?>
 
-<div class="space-y-8">
+<div class="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
 
-    <div class="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+    <div>
+        <h2 class="text-3xl font-bold text-gray-900">
+            Tous les animaux
+        </h2>
 
-        <div>
-            <h2 class="text-3xl font-bold text-gray-900">
-                Tous les animaux
-            </h2>
-
-            <p class="mt-1 text-gray-500">
-                Retrouvez tous les animaux disponibles à l'adoption.
-            </p>
-        </div>
-
-        @can('manage-animals')
-            <a
-                href="{{ route('animals.create') }}"
-                class="rounded-2xl bg-[#C67C47] px-6 py-3 text-center font-semibold text-white transition hover:bg-[#b56f3c]">
-
-                Ajouter un animal
-
-            </a>
-        @endcan
-
+        <p class="mt-1 text-gray-500">
+            Retrouvez tous les animaux disponibles à l'adoption.
+        </p>
     </div>
 
-    {{ $this->animals->links() }}
+    @can('manage-animals')
+        <a
+            href="{{ route('animals.create') }}"
+            class="rounded-2xl bg-[#C67C47] px-6 py-3 text-center font-semibold text-white transition hover:bg-[#b56f3c]">
 
-    <div class="rounded-3xl border border-gray-200 bg-white p-5 shadow-sm">
+            Ajouter un animal
 
-        <x-search
-            search="searchAnimal"
-            filter="filters"
-            status="filtersStatus"
-            pendingOnly="pendingOnly"
-            :pendingCount="$this->pendingCount"
-            :enum="\App\Enums\StatusAnimal::class"
-        />
-
-    </div>
-
-    <h2 class="sr-only">Liste des animaux</h2>
-
-    <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-
-        @foreach($this->animals as $animal)
-            <x-card-animal :animal="$animal"/>
-        @endforeach
-
-    </div>
+        </a>
+    @endcan
 
 </div>
+
+<div class="rounded-3xl border border-gray-200 bg-white p-5 shadow-sm">
+
+    <x-search
+        search="searchAnimal"
+        filter="filters"
+        status="filtersStatus"
+        pendingOnly="pendingOnly"
+        :pendingCount="$this->pendingCount"
+        :enum="\App\Enums\StatusAnimal::class"
+    />
+
+</div>
+
+<h2 class="sr-only">Liste des animaux</h2>
+
+<div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+
+    @foreach($this->animals as $animal)
+        <x-card-animal :animal="$animal"/>
+    @endforeach
+
+</div>
+
+@if($this->animals->hasPages())
+    <div class="mt-10 flex justify-center">
+        <div class="rounded-2xl border border-gray-200 bg-white px-4 py-3 shadow-sm">
+            {{ $this->animals->links() }}
+        </div>
+    </div>
+@endif

@@ -2,11 +2,17 @@
 
 use App\Models\User;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 new class extends Component {
-
+    use WithPagination;
 
     public string $searchMembers = '';
+
+    public function updatedSearchMembers(): void
+    {
+        $this->resetPage();
+    }
 
     public function getMembersProperty(): array|\Illuminate\Pagination\LengthAwarePaginator|\LaravelIdea\Helper\App\Models\_IH_User_C
     {
@@ -76,6 +82,8 @@ new class extends Component {
                 @endforeach
 
             </div>
+
+            {{ $this->members->links() }}
 
         </div>
     </section>
