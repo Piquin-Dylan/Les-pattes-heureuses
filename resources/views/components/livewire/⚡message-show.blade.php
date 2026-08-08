@@ -9,7 +9,7 @@ new class extends Component {
     public function mount(): void
     {
         if (is_null($this->message->read_at)) {
-            $this->message->update(['read_at' => now()]);
+            $this->message->forceFill(['read_at' => now()])->save();
         }
     }
 

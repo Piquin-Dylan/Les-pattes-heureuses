@@ -30,9 +30,11 @@ new class extends Component {
 
             <x-message_empty></x-message_empty>
         @else
-            @foreach($this->messages as $message)
-                <x-message_card :message="$message"></x-message_card>
-            @endforeach
+            <div class="space-y-4">
+                @foreach($this->messages as $message)
+                    <x-message_card :message="$message"></x-message_card>
+                @endforeach
+            </div>
 
             <div class="mt-6">
                 {{ $this->messages->links('components.custom') }}

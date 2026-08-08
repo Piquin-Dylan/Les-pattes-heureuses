@@ -1,6 +1,4 @@
-<div class="space-y-4">
-
-    <article
+<article
         wire:key="message-{{ $message->id }}"
         class="rounded-3xl border border-gray-200 bg-white p-5 shadow-sm transition hover:border-[#C67C47]/40 hover:shadow-md sm:p-6">
 
@@ -90,4 +88,3 @@
         </div>
 
     </article>
-</div>
