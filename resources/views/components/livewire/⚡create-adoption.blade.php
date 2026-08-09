@@ -26,7 +26,7 @@ new class extends Component {
 
         <x-page-header
             title="Demande d'adoption"
-            description="Remplissez ce formulaire pour nous faire part de votre intérêt pour {{ $animal->name }}."
+            description="Complétez les informations du demandeur intéressé par l'adoption de {{ $animal->name }}."
         />
 
         <div class="mt-8 grid gap-6 lg:grid-cols-[320px_1fr] lg:items-start">
@@ -70,7 +70,7 @@ new class extends Component {
 
                         <div>
                             <p class="text-xs font-semibold uppercase tracking-wider text-[#C67C47]">
-                                Votre demande concerne
+                                Animal concerné
                             </p>
 
                             <h2 class="mt-1 text-2xl font-bold text-gray-900">
@@ -152,16 +152,16 @@ new class extends Component {
                 <div class="mb-8">
 
                     <p class="text-xs font-semibold uppercase tracking-wider text-[#C67C47]">
-                        Vos informations
+                        Informations du demandeur
                     </p>
 
                     <h2 class="mt-2 text-xl font-bold text-gray-900 sm:text-2xl">
-                        Parlez-nous de vous
+                        Coordonnées du demandeur
                     </h2>
 
                     <p class="mt-2 max-w-2xl text-sm leading-6 text-gray-500">
-                        Ces informations nous permettront de vous recontacter
-                        concernant votre demande pour {{ $animal->name }}.
+                        Ces informations permettront de recontacter le demandeur
+                        au sujet de sa demande pour {{ $animal->name }}.
                     </p>
 
                 </div>
@@ -212,7 +212,7 @@ new class extends Component {
                         for="message"
                         class="mb-2 block text-sm font-semibold text-gray-700"
                     >
-                        Votre message
+                        Message du demandeur
                     </label>
 
                     <textarea
@@ -220,7 +220,7 @@ new class extends Component {
                         name="message"
                         wire:model.live="form.message"
                         rows="6"
-                        placeholder="Présentez-vous en quelques mots et expliquez-nous pourquoi vous souhaitez adopter {{ $animal->name }}..."
+                        placeholder="Présentation du demandeur et motivation pour l'adoption de {{ $animal->name }}..."
                         class="w-full resize-none rounded-2xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-800 outline-none transition placeholder:text-gray-400 focus:border-[#C67C47] focus:ring-4 focus:ring-[#C67C47]/10"
                     ></textarea>
 
@@ -251,8 +251,8 @@ new class extends Component {
 
                         <p class="text-sm leading-6 text-gray-600">
                             L'envoi de ce formulaire ne garantit pas automatiquement
-                            l'adoption. Notre équipe étudiera votre demande et vous
-                            recontactera prochainement.
+                            l'adoption. La demande sera étudiée avant toute
+                            confirmation.
                         </p>
 
                     </div>
@@ -269,7 +269,7 @@ new class extends Component {
                     >
 
                         <span wire:loading.remove wire:target="save">
-                            Envoyer ma demande
+                            Envoyer la demande
                         </span>
 
                         <span

@@ -38,6 +38,22 @@ new class extends Component {
 
 <div class="space-y-6">
 
+    <div class="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+
+        <x-page-header
+            title="Demandes d'adoption"
+            description="Suivez et gérez les demandes d'adoption."/>
+
+        @can('manage-animals')
+            <a
+                href="{{ route('adoptions.create') }}"
+                class="rounded-2xl bg-[#C67C47] px-6 py-3 text-center font-semibold text-white transition hover:bg-[#b56f3c]">
+                Nouvelle adoption
+            </a>
+        @endcan
+
+    </div>
+
     <x-search
         search="searchAnimal"
         filter="filters"

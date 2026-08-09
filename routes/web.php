@@ -87,6 +87,10 @@ Route::middleware('auth')->group(function () {
         ]);
     })->name('adoptions');
 
+    Route::get('/adoptions/create', function () {
+        return view('components.pages.adoption.adoption_create');
+    })->name('adoptions.create');
+
     Route::get('/adoptions/{adoption}', function (Adoption $adoption) {
         return view('components.pages.adoption.adoption_fiche', [
             'adoption' => $adoption
