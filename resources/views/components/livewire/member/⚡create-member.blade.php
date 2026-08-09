@@ -9,6 +9,11 @@ new class extends Component {
 
     public CreateMember $form;
 
+    public function mount(): void
+    {
+        $this->form->resetAvailabilities();
+    }
+
     public function save()
     {
         $member = $this->form->submit();
@@ -97,6 +102,22 @@ new class extends Component {
                             id="photo"
                             name="photo"
                             wire:model.live="form.photo"/>
+
+                    </div>
+
+                    <div class="mt-8">
+
+                        <h2 class="mb-1 text-xl font-semibold text-gray-800">
+                            Disponibilités
+                        </h2>
+
+                        <p class="mb-4 text-sm text-gray-500">
+                            Cochez les créneaux où la personne est disponible.
+                        </p>
+
+                        <x-form.availability-picker
+                            :schedule="$form->availabilities"
+                            name="form.availabilities"/>
 
                     </div>
 

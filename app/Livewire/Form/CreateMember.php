@@ -4,6 +4,7 @@ namespace App\Livewire\Form;
 
 use App\Jobs\ProcessUploadedImage;
 use App\Models\Animal;
+use App\Models\Availability;
 use App\Models\User;
 use App\Notifications\NewAdoptionNotification;
 use App\Notifications\NewMemberNotification;
@@ -38,6 +39,13 @@ class CreateMember extends Form
     #[Validate('required', message: 'Le champs téléphone est requis')]
     public string $phone = "";
 
+    public array $availabilities = [];
+
+
+    public function resetAvailabilities(): void
+    {
+        $this->availabilities = Availability::defaultSchedule();
+    }
 
     public function submit(): User
     {
@@ -54,6 +62,8 @@ class CreateMember extends Form
             'status' => $this->status,
             'phone' => $this->phone,
         ]);
+
+        Availability::saveSchedule($member, $this->availabilities);
 
         ProcessUploadedImage::dispatch($member, $tmpPath);
 
