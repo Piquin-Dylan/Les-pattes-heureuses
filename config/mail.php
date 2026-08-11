@@ -186,4 +186,18 @@ return [
         ),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Refuge Contact Address
+    |--------------------------------------------------------------------------
+    |
+    | Address that receives the notifications sent from the public contact
+    | form.
+    |
+    */
+
+    'refuge' => [
+        'address' => env('MAIL_REFUGE_ADDRESS', 'contact@les-pattes-heureuses.be'),
+    ],
+
 ];

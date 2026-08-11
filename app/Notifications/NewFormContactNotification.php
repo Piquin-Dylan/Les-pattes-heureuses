@@ -36,7 +36,6 @@ class NewFormContactNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->mailer('mailtrap')
             ->subject('Nouveau message de contact')
             ->greeting('Bonjour,')
             ->line('Un nouveau message de contact a été envoyé depuis le formulaire de contact du site Les Pattes Heureuses.')
