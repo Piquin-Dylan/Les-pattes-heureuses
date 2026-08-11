@@ -197,7 +197,7 @@ return [
     */
 
     'refuge' => [
-        'address' => env('MAIL_REFUGE_ADDRESS', 'contact@les-pattes-heureuses.be'),
+        'address' => env('REFUGE_EMAIL', 'contact@les-pattes-heureuses.be'),
     ],
 
 ];
