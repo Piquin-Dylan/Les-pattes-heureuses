@@ -33,12 +33,13 @@ class NewFormContactNotification extends Notification
     /**
      * Get the mail representation of the notification.
      */
-    public function toMail(object $notifiable,): MailMessage
+    public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
+            ->mailer('mailtrap')
             ->subject('Nouveau message de contact')
             ->greeting('Bonjour,')
-            ->line('Un nouveau message de contact a été envoyé depuis le formulaire de contact du site les pattes heureuses')
+            ->line('Un nouveau message de contact a été envoyé depuis le formulaire de contact du site Les Pattes Heureuses.')
             ->line('Expéditeur : ' . $this->message->firstName . ' ' . $this->message->lastName)
             ->line('E-mail : ' . $this->message->email)
             ->line('Téléphone : ' . $this->message->phone)
