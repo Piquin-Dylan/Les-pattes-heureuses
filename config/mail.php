@@ -25,17 +25,15 @@ return [
     | their respective settings. Several examples have been configured for
     | you and you are free to add your own as your application requires.
     |
-    | Laravel supports a variety of mail "transport" drivers that can be used
-    | when delivering an email. You may specify which one you're using for
-    | your mailers below. You may also add additional mailers if needed.
-    |
-    | Supported: "smtp", "sendmail", "mailgun", "ses", "ses-v2",
-    |            "postmark", "resend", "log", "array",
-    |            "failover", "roundrobin"
-    |
     */
 
     'mailers' => [
+
+        /*
+        |--------------------------------------------------------------------------
+        | Default SMTP Mailer
+        |--------------------------------------------------------------------------
+        */
 
         'smtp' => [
             'transport' => 'smtp',
@@ -46,38 +44,101 @@ return [
             'username' => env('MAIL_USERNAME'),
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
-            'local_domain' => env('MAIL_EHLO_DOMAIN', parse_url((string) env('APP_URL', 'http://localhost'), PHP_URL_HOST)),
+            'local_domain' => env(
+                'MAIL_EHLO_DOMAIN',
+                parse_url(
+                    (string) env('APP_URL', 'http://localhost'),
+                    PHP_URL_HOST
+                )
+            ),
         ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | Mailtrap Sandbox
+        |--------------------------------------------------------------------------
+        */
+
+        'mailtrap' => [
+            'transport' => 'smtp',
+            'host' => env('MAILTRAP_HOST', 'sandbox.smtp.mailtrap.io'),
+            'port' => env('MAILTRAP_PORT', 2525),
+            'username' => env('MAILTRAP_USERNAME'),
+            'password' => env('MAILTRAP_PASSWORD'),
+            'encryption' => env('MAILTRAP_ENCRYPTION', 'tls'),
+            'timeout' => null,
+        ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | Amazon SES
+        |--------------------------------------------------------------------------
+        */
 
         'ses' => [
             'transport' => 'ses',
         ],
 
+        /*
+        |--------------------------------------------------------------------------
+        | Postmark
+        |--------------------------------------------------------------------------
+        */
+
         'postmark' => [
             'transport' => 'postmark',
-            // 'message_stream_id' => env('POSTMARK_MESSAGE_STREAM_ID'),
-            // 'client' => [
-            //     'timeout' => 5,
-            // ],
         ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | Resend
+        |--------------------------------------------------------------------------
+        */
 
         'resend' => [
             'transport' => 'resend',
         ],
 
+        /*
+        |--------------------------------------------------------------------------
+        | Sendmail
+        |--------------------------------------------------------------------------
+        */
+
         'sendmail' => [
             'transport' => 'sendmail',
-            'path' => env('MAIL_SENDMAIL_PATH', '/usr/sbin/sendmail -bs -i'),
+            'path' => env(
+                'MAIL_SENDMAIL_PATH',
+                '/usr/sbin/sendmail -bs -i'
+            ),
         ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | Log
+        |--------------------------------------------------------------------------
+        */
 
         'log' => [
             'transport' => 'log',
             'channel' => env('MAIL_LOG_CHANNEL'),
         ],
 
+        /*
+        |--------------------------------------------------------------------------
+        | Array
+        |--------------------------------------------------------------------------
+        */
+
         'array' => [
             'transport' => 'array',
         ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | Failover
+        |--------------------------------------------------------------------------
+        */
 
         'failover' => [
             'transport' => 'failover',
@@ -88,6 +149,12 @@ return [
             'retry_after' => 60,
         ],
 
+        /*
+        |--------------------------------------------------------------------------
+        | Round Robin
+        |--------------------------------------------------------------------------
+        */
+
         'roundrobin' => [
             'transport' => 'roundrobin',
             'mailers' => [
@@ -96,7 +163,6 @@ return [
             ],
             'retry_after' => 60,
         ],
-
     ],
 
     /*
@@ -104,15 +170,21 @@ return [
     | Global "From" Address
     |--------------------------------------------------------------------------
     |
-    | You may wish for all emails sent by your application to be sent from
-    | the same address. Here you may specify a name and address that is
-    | used globally for all emails that are sent by your application.
+    | This address is used as the default sender for your application's
+    | emails.
     |
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', env('APP_NAME', 'Laravel')),
+        'address' => env(
+            'MAIL_FROM_ADDRESS',
+            'hello@example.com'
+        ),
+
+        'name' => env(
+            'MAIL_FROM_NAME',
+            env('APP_NAME', 'Laravel')
+        ),
     ],
 
 ];

@@ -3,18 +3,16 @@
 namespace App\Livewire\Form;
 
 use App\Enums\AdoptionStatus;
-use App\Models\adoption;
+use App\Models\Adoption;
 use App\Models\Animal;
 use App\Notifications\NewAdoptionNotification;
 use App\Notifications\NewAnimalAdoptionNotification;
-use App\Notifications\NewFormContactNotification;
 use Illuminate\Support\Facades\Notification;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class CreateAdoption extends Form
 {
-
     #[Validate('required', message: 'Le champs prénom est requis')]
     public string $firstName = "";
 
@@ -30,11 +28,9 @@ class CreateAdoption extends Form
     #[Validate('required', message: 'Le champs message est requis')]
     public string $message = "";
 
-
     public function submit(Animal $animal): void
     {
         $this->validate();
-
 
         $adoption = Adoption::create([
             'firstName' => $this->firstName,
@@ -50,10 +46,8 @@ class CreateAdoption extends Form
         Notification::route('mail', $this->email)
             ->notify(new NewAnimalAdoptionNotification($adoption));
 
-        Notification::route('mail', [
-            config('mail.from.address') => config('mail.from.name'),
-        ])->notify(new NewAdoptionNotification($adoption));
 
-
+        Notification::route('mail', config('mail.refuge.address'))
+            ->notify(new NewAdoptionNotification($adoption));
     }
 }

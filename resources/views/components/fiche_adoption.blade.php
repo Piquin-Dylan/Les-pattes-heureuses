@@ -83,47 +83,6 @@
                     </div>
 
 
-                    <div class="mt-6 rounded-2xl border border-[#E8DDD3] bg-[#FCFAF8] p-4">
-
-
-                            <div class="mb-5">
-
-                                <h3 class="text-sm font-bold uppercase tracking-wide text-[#C67C47]">
-                                    Gestion de l'animal
-                                </h3>
-
-                                <p class="mt-1 text-sm text-gray-500">
-                                    Modifiez le statut de l'animal lorsqu'il change de situation.
-                                </p>
-
-                            </div>
-
-                            <div class="space-y-3">
-
-                                <label class="block text-sm font-semibold text-[#171C2B]">
-                                    Statut de l'animal
-                                </label>
-
-                                <div class="flex items-end gap-3">
-
-                                    <div class="flex-1">
-
-                                        <x-update_status
-                                            :enum="\App\Enums\StatusAnimal::class"
-                                            model="requestAnimal"
-                                            action="updateStatusAnimal"
-                                        />
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-
-                    </div>
-
-
                     <div class="mt-6 grid grid-cols-2 gap-3">
 
                         <div class="rounded-xl bg-gray-50 p-3">
@@ -172,6 +131,20 @@
                     <p class="mt-6 border-t border-gray-100 pt-6 text-sm leading-6 text-gray-500">
                         {{ $adoption->animal->description }}
                     </p>
+
+                    <div class="mt-6 space-y-3 border-t border-gray-100 pt-6">
+
+                        <label class="block text-sm font-semibold text-[#171C2B]">
+                            Statut de l'animal
+                        </label>
+
+                        <x-update_status
+                            :enum="\App\Enums\StatusAnimal::class"
+                            model="requestAnimal"
+                            action="updateStatusAnimal"
+                        />
+
+                    </div>
 
                 </div>
 

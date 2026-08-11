@@ -55,7 +55,7 @@ class Availability extends Model
 
         return $schedule;
     }
-    
+
     public static function saveSchedule(User $user, array $schedule): void
     {
         foreach ($schedule as $day => $periods) {
