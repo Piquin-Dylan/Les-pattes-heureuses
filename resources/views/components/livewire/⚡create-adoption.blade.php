@@ -9,10 +9,14 @@ new class extends Component {
 
     public CreateAdoption $form;
 
-    public function save(): void
+    public function save()
     {
         $this->form->validate();
         $this->form->submit($this->animal);
+
+        return redirect()
+            ->route('animal')
+            ->with('success', "Votre demande d'adoption a bien été envoyée ! Nous reviendrons vers vous rapidement.");
     }
 
 };
