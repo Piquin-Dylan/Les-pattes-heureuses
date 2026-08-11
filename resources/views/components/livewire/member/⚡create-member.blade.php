@@ -68,14 +68,6 @@ new class extends Component {
                             name="email"
                             wire:model.live="form.email"/>
 
-                        <x-form.input
-                            label_name="Mot de passe"
-                            for_label="password"
-                            type="password"
-                            id="password"
-                            name="password"
-                            wire:model.live="form.password"/>
-
                         <x-form.select
                             label_name="Role"
                             for_label="role"

@@ -44,7 +44,7 @@ class NewMemberNotification extends Notification
             ->line('Votre compte a bien été créé sur le site Les Pattes Heureuses.')
             ->line('Vous pouvez dès à présent vous connecter à votre espace personnel.')
             ->line('Adresse e-mail : ' . $this->member->email)
-            ->line('Mot de passe : ' . $this->member->password)
+            ->line('Mot de passe : ' . User::DEFAULT_PASSWORD)
             ->action('Accéder au site', url('/admin'))
             ->line('Une fois connecté, nous vous recommandons de modifier votre mot de passe ainsi que les informations de votre compte si nécessaire.')
             ->line('Nous vous souhaitons la bienvenue sur Les Pattes Heureuses !');

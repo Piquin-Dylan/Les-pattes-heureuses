@@ -33,9 +33,6 @@ class CreateMember extends Form
     #[Validate('required|email', message: 'Le champs email est requis')]
     public string $email = "";
 
-    #[Validate('required', message: 'Le champs mot de passe est requis')]
-    public string $password = "";
-
     #[Validate('required', message: 'Le champs téléphone est requis')]
     public string $phone = "";
 
@@ -58,7 +55,7 @@ class CreateMember extends Form
             'lastName' => $this->lastName,
             'photo' => null,
             'email' => $this->email,
-            'password' => $this->password,
+            'password' => User::DEFAULT_PASSWORD,
             'status' => $this->status,
             'phone' => $this->phone,
         ]);
