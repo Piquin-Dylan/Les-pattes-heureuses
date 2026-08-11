@@ -43,6 +43,7 @@ class AnimalSubmittedNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
+            ->mailer('mailtrap')
             ->subject('Nouvelle fiche animal à valider')
             ->greeting('Bonjour,')
             ->line($this->user->firstName . ' ' . $this->user->lastName . ' a créé une nouvelle fiche pour "' . $this->animal->name . '".')

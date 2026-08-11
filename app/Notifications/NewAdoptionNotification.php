@@ -38,6 +38,7 @@ class NewAdoptionNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
+            ->mailer('mailtrap')
             ->subject('Nouvelle demande d’adoption')
             ->greeting('Bonjour,')
             ->line('Une nouvelle demande d’adoption a été envoyée depuis le site Les Pattes Heureuses.')
