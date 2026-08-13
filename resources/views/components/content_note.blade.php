@@ -32,11 +32,18 @@
 
                 <div class="flex items-center gap-3">
 
-                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[#C67C47] text-sm font-bold text-white">
+                    @if($note->user->photo)
+                        <img
+                            src="{{ asset('storage/animals/'.$note->user->photo.'/thumb.webp') }}"
+                            alt="Photo de {{ $note->user->firstName }} {{ $note->user->lastName }}"
+                            class="h-10 w-10 rounded-full object-cover">
+                    @else
+                        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[#C67C47] text-sm font-bold text-white">
 
-                        {{ strtoupper(substr($note->user->firstName, 0, 1)) }}
+                            {{ strtoupper(substr($note->user->firstName, 0, 1)) }}
 
-                    </div>
+                        </div>
+                    @endif
 
                     <div>
 
