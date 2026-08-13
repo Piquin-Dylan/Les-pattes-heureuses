@@ -2,9 +2,11 @@
 
 namespace App\Livewire\Form;
 
+use App\Jobs\ProcessUploadedImage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Validate;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Livewire\Form;
 use Livewire\WithFileUploads;
 
@@ -27,7 +29,7 @@ class EditFormProfile extends Form
     public string $email = '';
 
     #[Validate('nullable|image|max:2048')]
-    public $image = null;
+    public ?TemporaryUploadedFile $image = null;
 
     public function mount(): void
     {
@@ -58,11 +60,15 @@ class EditFormProfile extends Form
             'email' => $this->email,
         ];
 
-        if ($this->image) {
-            $data['image'] = $this->image->store('photos', 'public');
-        }
+        $user = Auth::user();
 
-        Auth::user()->update($data);
+        $user->update($data);
+
+        if ($this->image) {
+            $tmpPath = $this->image->store('uploads/tmp', 'local');
+
+            ProcessUploadedImage::dispatch($user, $tmpPath, $user->photo);
+        }
 
         $this->reset('image');
     }

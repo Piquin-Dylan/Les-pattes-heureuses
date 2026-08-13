@@ -10,10 +10,17 @@
             {{ $member->status instanceof \BackedEnum ? $member->status->value : ucfirst($member->status) }}
         </span>
 
-        <div class="flex h-20 w-20 items-center justify-center rounded-full bg-[#C67C47] text-2xl font-bold text-white">
-            {{ strtoupper(substr($member->firstName, 0, 1)) }}
-            {{ strtoupper(substr($member->lastName, 0, 1)) }}
-        </div>
+        @if($member->photo)
+            <img
+                src="{{ asset('storage/animals/'.$member->photo.'/thumb.webp') }}"
+                alt="Photo de {{ $member->firstName }} {{ $member->lastName }}"
+                class="h-20 w-20 rounded-full object-cover">
+        @else
+            <div class="flex h-20 w-20 items-center justify-center rounded-full bg-[#C67C47] text-2xl font-bold text-white">
+                {{ strtoupper(substr($member->firstName, 0, 1)) }}
+                {{ strtoupper(substr($member->lastName, 0, 1)) }}
+            </div>
+        @endif
 
         <h2 class="mt-4 text-center text-xl font-bold text-gray-900">
             {{ $member->firstName }} {{ $member->lastName }}

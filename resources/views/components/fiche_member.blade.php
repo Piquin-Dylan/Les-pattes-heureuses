@@ -6,12 +6,19 @@
 
     <div class="mt-8 flex items-center justify-center">
 
-        <div class="flex aspect-square w-32 items-center justify-center rounded-full bg-[#C67C47] text-4xl font-bold text-white">
+        @if($member->photo)
+            <img
+                src="{{ asset('storage/animals/'.$member->photo.'/320.webp') }}"
+                alt="Photo de {{ $member->firstName }} {{ $member->lastName }}"
+                class="aspect-square w-32 rounded-full object-cover">
+        @else
+            <div class="flex aspect-square w-32 items-center justify-center rounded-full bg-[#C67C47] text-4xl font-bold text-white">
 
-            {{ strtoupper(substr($member->firstName, 0, 1)) }}
-            {{ strtoupper(substr($member->lastName, 0, 1)) }}
+                {{ strtoupper(substr($member->firstName, 0, 1)) }}
+                {{ strtoupper(substr($member->lastName, 0, 1)) }}
 
-        </div>
+            </div>
+        @endif
 
     </div>
 

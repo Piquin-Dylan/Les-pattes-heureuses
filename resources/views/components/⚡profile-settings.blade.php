@@ -109,6 +109,25 @@ new class extends Component {
 
             </div>
 
+        @elseif(Auth::user()->photo)
+
+            <div class="rounded-2xl border border-gray-200 bg-gray-50 p-6">
+
+                <p class="mb-4 text-sm font-medium text-gray-700">
+                    Photo actuelle
+                </p>
+
+                <div class="flex justify-center">
+
+                    <img
+                        src="{{ asset('storage/animals/'.Auth::user()->photo.'/320.webp') }}"
+                        alt="Photo de profil"
+                        class="h-32 w-32 rounded-full border-4 border-white object-cover shadow-md">
+
+                </div>
+
+            </div>
+
         @endif
 
         <div class="flex justify-end">

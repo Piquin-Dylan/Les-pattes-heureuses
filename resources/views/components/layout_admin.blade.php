@@ -1551,10 +1551,16 @@
 
                 <li class="flex justify-center">
                     <a id="settings" href="{{ route('settings') }}">
-                        <img
-                            src=""
-                            alt="Photo de profil"
-                            class="w-28 h-28 rounded-full object-cover border-2 border-white/20 hover:border-purple-400 transition">
+                        @if(auth()->user()->photo)
+                            <img
+                                src="{{ asset('storage/animals/'.auth()->user()->photo.'/thumb.webp') }}"
+                                alt="Photo de profil"
+                                class="w-28 h-28 rounded-full object-cover border-2 border-white/20 hover:border-purple-400 transition">
+                        @else
+                            <div class="flex w-28 h-28 items-center justify-center rounded-full bg-white/20 text-2xl font-bold text-white border-2 border-white/20 hover:border-purple-400 transition">
+                                {{ strtoupper(substr(auth()->user()->firstName ?? '', 0, 1)) }}{{ strtoupper(substr(auth()->user()->lastName ?? '', 0, 1)) }}
+                            </div>
+                        @endif
                     </a>
                 </li>
             </ul>
