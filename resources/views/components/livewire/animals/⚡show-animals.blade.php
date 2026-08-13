@@ -67,7 +67,7 @@ new class extends Component {
 };
 ?>
 
-<div>
+<div class="space-y-6">
 
     <div class="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
 
@@ -93,18 +93,14 @@ new class extends Component {
 
     </div>
 
-    <div class="rounded-3xl border border-gray-200 bg-white p-5 shadow-sm">
-
-        <x-search
-            search="searchAnimal"
-            filter="filters"
-            status="filtersStatus"
-            pendingOnly="pendingOnly"
-            :pendingCount="$this->pendingCount"
-            :enum="\App\Enums\StatusAnimal::class"
-        />
-
-    </div>
+    <x-search
+        search="searchAnimal"
+        filter="filters"
+        status="filtersStatus"
+        pendingOnly="pendingOnly"
+        :pendingCount="$this->pendingCount"
+        :enum="\App\Enums\StatusAnimal::class"
+    />
 
     <h2 class="sr-only">Liste des animaux</h2>
 

@@ -14,6 +14,8 @@ enum StatusAnimal: string
 
     case IN_PROGRESS = 'En cours';
 
+    case IN_TREATMENT = 'En soin';
+
     public function label(): string
     {
         return match ($this) {
@@ -24,6 +26,7 @@ enum StatusAnimal: string
             self::PENDING => 'En attente',
             self::IN_ADOPTION => "En cours d'adoption",
             self::IN_PROGRESS => "En cours",
+            self::IN_TREATMENT => 'En soin',
         };
     }
 }
