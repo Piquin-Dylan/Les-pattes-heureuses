@@ -91,7 +91,7 @@ new class extends Component {
 
             <button
                 wire:click="previousMonth"
-                class="rounded-xl border p-2 hover:bg-gray-100"
+                class="cursor-pointer rounded-xl border p-2 hover:bg-gray-100"
             >
                 ←
             </button>
@@ -102,7 +102,7 @@ new class extends Component {
 
             <button
                 wire:click="nextMonth"
-                class="rounded-xl border p-2 hover:bg-gray-100"
+                class="cursor-pointer rounded-xl border p-2 hover:bg-gray-100"
             >
                 →
             </button>

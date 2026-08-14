@@ -2,7 +2,7 @@
 
 @php
     $steps = [
-        ['title' => 'Parcourez nos animaux', 'description' => "Explorez les fiches de nos pensionnaires et trouvez celui qui vous correspond."],
+        ['title' => 'Découvrez nos animaux', 'description' => "Explorez les fiches de nos pensionnaires et trouvez celui qui vous correspond."],
         ['title' => 'Faites une demande', 'description' => "Remplissez un formulaire d'adoption, notre équipe l'étudie rapidement."],
         ['title' => 'Rencontrez votre compagnon', 'description' => "Venez faire connaissance et accueillez-le dans son nouveau foyer."],
     ];
