@@ -26,6 +26,6 @@ new class extends Component {
 
 <span
     wire:poll.30s
-    class="inline-flex min-w-[1.375rem] items-center justify-center rounded-full bg-red-500 px-1.5 py-0.5 text-xs font-bold leading-none text-white {{ $this->count === 0 ? 'hidden' : '' }}">
+    class="min-w-[1.375rem] items-center justify-center rounded-full bg-red-500 px-1.5 py-0.5 text-xs font-bold leading-none text-white {{ $this->count === 0 ? 'hidden' : 'inline-flex' }}">
     {{ $this->count }}
 </span>

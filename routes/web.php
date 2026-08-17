@@ -41,6 +41,10 @@ Route::get('contact', function () {
     ]);
 })->name('public.contact');
 
+Route::get('membre', function () {
+    return view('components.client.pages.membre');
+})->name('public.membre');
+
 
 Route::middleware('auth')->group(function () {
 

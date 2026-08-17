@@ -44,6 +44,17 @@
                 <span itemprop="name">Contact</span>
             </a>
 
+            <a
+                href="{{ route('public.membre') }}"
+                itemprop="url"
+                @class([
+                    'px-6 py-3 rounded-xl font-semibold transition-all duration-200',
+                    'bg-white text-[#BC8451] shadow-md' => request()->routeIs('public.membre'),
+                    'text-white hover:bg-white/15' => !request()->routeIs('public.membre'),
+                ])>
+                <span itemprop="name">Devenir membre</span>
+            </a>
+
 
         </div>
 
