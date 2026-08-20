@@ -29,7 +29,7 @@ new class extends Component {
 <div>
 
     <section class="bg-[#FDF8F4] px-8 py-16">
-        <div class="mx-auto max-w-5xl text-left">
+        <div class="mx-auto max-w-6xl text-left">
             <p class="text-xs font-semibold uppercase tracking-wider text-[#C67C47]">
                 Rejoignez l'aventure
             </p>

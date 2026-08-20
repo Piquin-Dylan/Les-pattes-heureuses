@@ -66,7 +66,7 @@ class EditAnimal extends Form
             'name' => $this->name,
             'description' => $this->description,
             'age' => $this->age,
-            'sexe' => $this->sexe,
+            'sex' => $this->sexe,
             'status' => $this->status,
             'species' => $this->species,
             'coat' => $this->coat,

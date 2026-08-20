@@ -103,11 +103,12 @@ new class extends Component {
 
     <div class="flex flex-col gap-3">
 
-        <button
-            class="rounded-2xl bg-[#C67C47] py-4 font-semibold text-white transition hover:bg-[#B56F3C]">
+        <a
+            href="{{ route('members.edit', $member) }}"
+            class="rounded-2xl bg-[#C67C47] py-4 text-center font-semibold text-white transition hover:bg-[#B56F3C]">
 
             Modifier le membre
-        </button>
+        </a>
 
         <button wire:click="deleteMember"
                 class="rounded-2xl border border-red-500 py-4 font-semibold text-red-500 transition hover:bg-red-50">

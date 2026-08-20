@@ -86,6 +86,12 @@ Route::middleware('auth')->group(function () {
         ]);
     })->name('members.fiche');
 
+    Route::get('/members/{member}/edit', function (\App\Models\User $member) {
+        return view('components.pages.member.memberEdit', [
+            'member' => $member
+        ]);
+    })->name('members.edit');
+
     Route::get('/adoptions', function () {
         return view('components.pages.adoption.adoption_list', [
         ]);
