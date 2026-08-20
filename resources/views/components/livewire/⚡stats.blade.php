@@ -85,9 +85,9 @@ new class extends Component {
 
 <div class="space-y-8">
 
-    <div class="flex items-center justify-between">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 
-        <div class="flex items-center gap-6">
+        <div class="flex items-center gap-3 sm:gap-6">
 
             <button
                 wire:click="previousMonth"
@@ -96,7 +96,7 @@ new class extends Component {
                 ←
             </button>
 
-            <h1 class="text-2xl font-bold">
+            <h1 class="text-xl font-bold sm:text-2xl">
                 {{ ucfirst($currentMonth->translatedFormat('F Y')) }}
             </h1>
 
@@ -112,7 +112,7 @@ new class extends Component {
         <button
             type="button"
             wire:click="download"
-            class="rounded-2xl bg-[#C67C47] px-6 py-3 text-center font-semibold text-white transition hover:bg-[#b56f3c]"
+            class="w-full rounded-2xl bg-[#C67C47] px-6 py-3 text-center font-semibold text-white transition hover:bg-[#b56f3c] sm:w-auto"
         >
             Télécharger le rapport PDF
         </button>
@@ -128,7 +128,7 @@ new class extends Component {
                 Animaux encore au refuge
             </p>
 
-            <h2 class="mt-3 text-5xl font-bold">
+            <h2 class="mt-3 text-4xl font-bold sm:text-5xl">
                 {{ $animalsInShelterCount }}
             </h2>
 
@@ -145,7 +145,7 @@ new class extends Component {
                 Demandes d'adoption
             </p>
 
-            <h2 class="mt-3 text-5xl font-bold">
+            <h2 class="mt-3 text-4xl font-bold sm:text-5xl">
                 {{ $adoptionsCount }}
             </h2>
 
@@ -162,7 +162,7 @@ new class extends Component {
                 Animaux accueillis
             </p>
 
-            <h2 class="mt-3 text-5xl font-bold">
+            <h2 class="mt-3 text-4xl font-bold sm:text-5xl">
                 {{ $animalsWelcomedCount }}
             </h2>
 

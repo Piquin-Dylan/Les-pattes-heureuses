@@ -61,7 +61,7 @@ new class extends Component {
 
             <div class="rounded-3xl border border-gray-200 bg-white p-5 shadow-sm">
 
-                <div class="lg:col-span-2">
+                <div>
 
                     <label class="mb-2 block text-sm font-medium text-gray-700">
                         Recherche

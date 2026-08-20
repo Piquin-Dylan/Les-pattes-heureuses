@@ -25,7 +25,7 @@ new class extends Component {
 };
 ?>
 
-<div class="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm">
+<div class="rounded-3xl border border-gray-200 bg-white p-5 shadow-sm sm:p-8">
 
     <div class="mb-8">
 
@@ -134,7 +134,7 @@ new class extends Component {
 
             <button
                 type="submit"
-                class="rounded-2xl bg-[#C67C47] px-8 py-3 font-semibold text-white transition hover:bg-[#B56F3C]">
+                class="w-full rounded-2xl bg-[#C67C47] px-8 py-3 font-semibold text-white transition hover:bg-[#B56F3C] sm:w-auto">
 
                 Enregistrer les modifications
 

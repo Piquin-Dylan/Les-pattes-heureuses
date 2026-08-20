@@ -30,13 +30,13 @@ new class extends Component {
 };
 ?>
 
-<section class="min-h-screen bg-[#F8F5F2] px-5 py-8">
+<section class="flex min-h-screen items-center bg-[#F8F5F2] px-5 py-8">
 
     <h2 class="hidden">
         Page de connexion
     </h2>
 
-    <div class="mx-auto flex min-h-screen max-w-md items-center">
+    <div class="mx-auto w-full max-w-md">
 
         <div class="w-full rounded-[32px] bg-white p-7 shadow-xl">
 

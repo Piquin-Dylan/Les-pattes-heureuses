@@ -6,7 +6,7 @@
 
 <div class="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
 
-    <div class="mb-6 flex items-center justify-between">
+    <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
 
         <div>
 
@@ -20,7 +20,7 @@
 
         </div>
 
-        <span class="rounded-full bg-[#C67C47]/10 px-3 py-1 text-sm font-semibold text-[#C67C47]">
+        <span class="w-fit shrink-0 rounded-full bg-[#C67C47]/10 px-3 py-1 text-sm font-semibold text-[#C67C47]">
             {{ $notes->count() }} note(s)
         </span>
 

@@ -80,7 +80,7 @@ new class extends Component {
             :readonly="! $editingAvailabilities"/>
 
         @if($editingAvailabilities)
-            <div class="mt-6 flex justify-end gap-3">
+            <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-end">
 
                 <button
                     wire:click="cancelEditAvailabilities"

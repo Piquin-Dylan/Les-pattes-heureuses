@@ -4,7 +4,7 @@
 ])
 
     <div>
-        <h2 class="text-3xl font-bold text-gray-900">
+        <h2 class="text-2xl font-bold text-gray-900 sm:text-3xl">
             {{ $title }}
         </h2>
 

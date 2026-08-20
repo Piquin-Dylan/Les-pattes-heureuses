@@ -1,4 +1,4 @@
-<div class="min-h-screen bg-white px-4 py-6 sm:px-6 lg:py-8">
+<div class="bg-white">
 
     <div class="mx-auto max-w-6xl">
 
@@ -9,7 +9,7 @@
             Retour aux demandes
         </a>
 
-        <div class="mb-7 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div class="mb-7 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
 
             <div>
                 <p class="mb-1 text-xs font-bold uppercase tracking-wide text-[#C67C47]">

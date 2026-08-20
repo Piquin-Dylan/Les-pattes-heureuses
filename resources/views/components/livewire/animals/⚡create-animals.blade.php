@@ -48,7 +48,7 @@ new class extends Component {
 };
 ?>
 
-<div class="w-full px-4 py-6">
+<div class="w-full px-0 py-6 sm:px-4">
 
     <section class="mb-8">
         <x-page-header

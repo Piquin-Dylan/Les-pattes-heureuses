@@ -45,7 +45,7 @@
 
             </h2>
 
-            <div class="grid grid-cols-2 gap-y-5">
+            <div class="grid grid-cols-1 gap-y-5 sm:grid-cols-2">
 
                 <div>
 

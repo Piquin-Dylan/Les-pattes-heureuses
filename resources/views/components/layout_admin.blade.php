@@ -1575,7 +1575,7 @@
         class="fixed inset-0 bg-black/40 z-30 lg:hidden">
     </div>
 
-    <div class="flex-1 flex flex-col lg:ml-64">
+    <div class="flex-1 min-w-0 flex flex-col lg:ml-64">
 
         <div class="bg-[#C67C47] h-16 flex items-center px-3 lg:px-4 shadow-md">
 
@@ -1619,7 +1619,7 @@
 
         </div>
 
-        <main class="flex-1 bg-[#F8F6F3] p-4 sm:p-6 overflow-y-auto">
+        <main class="flex-1 bg-[#F8F6F3] p-4 sm:p-6 overflow-y-auto overflow-x-hidden">
             {{ $slot }}
         </main>
 

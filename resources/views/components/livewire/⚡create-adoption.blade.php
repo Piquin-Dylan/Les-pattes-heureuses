@@ -24,7 +24,7 @@ new class extends Component {
 
 
 
-<div class="w-full px-4 py-6 sm:px-6 lg:px-8">
+<div class="w-full px-0 py-6 sm:px-4 sm:px-6 lg:px-8">
 
     <section class="mx-auto max-w-6xl">
 

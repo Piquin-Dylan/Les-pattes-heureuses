@@ -64,15 +64,15 @@ new class extends Component {
     <div class="overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm">
 
         <div class="overflow-x-auto">
-            <table class="w-full">
+            <table class="w-full min-w-[720px]">
 
                 <thead class="bg-gray-50">
                 <tr class="text-left text-sm text-gray-500">
-                    <th class="px-6 py-4 font-medium">Demandeur</th>
-                    <th class="px-6 py-4 font-medium">Animal</th>
-                    <th class="px-6 py-4 font-medium">Date</th>
-                    <th class="px-6 py-4 font-medium">Statut</th>
-                    <th class="px-6 py-4 font-medium">Actions</th>
+                    <th class="px-3 py-3 sm:px-6 sm:py-4 font-medium">Demandeur</th>
+                    <th class="px-3 py-3 sm:px-6 sm:py-4 font-medium">Animal</th>
+                    <th class="px-3 py-3 sm:px-6 sm:py-4 font-medium">Date</th>
+                    <th class="px-3 py-3 sm:px-6 sm:py-4 font-medium">Statut</th>
+                    <th class="px-3 py-3 sm:px-6 sm:py-4 font-medium">Actions</th>
                 </tr>
                 </thead>
 
@@ -81,13 +81,13 @@ new class extends Component {
                 @foreach($this->adoptions as $adoption)
                     <tr class="transition hover:bg-gray-50">
 
-                        <td class="px-6 py-4">
+                        <td class="px-3 py-3 sm:px-6 sm:py-4">
                                 <span class="font-semibold text-gray-900">
                                     {{ $adoption->firstName }}
                                 </span>
                         </td>
 
-                        <td class="px-6 py-4 text-gray-700">
+                        <td class="px-3 py-3 sm:px-6 sm:py-4 text-gray-700">
                             <a
                                 href="{{ route('animals.show', $adoption->animal) }}"
                                 class="font-medium text-[#C67C47] hover:underline">
@@ -95,17 +95,17 @@ new class extends Component {
                             </a>
                         </td>
 
-                        <td class="px-6 py-4 text-gray-500">
+                        <td class="px-3 py-3 sm:px-6 sm:py-4 text-gray-500">
                             {{ $adoption->created_at->format('d/m/Y') }}
                         </td>
 
-                        <td class="px-6 py-4">
+                        <td class="px-3 py-3 sm:px-6 sm:py-4">
                                 <span class="rounded-full bg-[#C67C47]/10 px-3 py-1 text-sm font-semibold text-[#C67C47]">
                                     {{ $adoption->status }}
                                 </span>
                         </td>
 
-                        <td class="px-6 py-4">
+                        <td class="px-3 py-3 sm:px-6 sm:py-4">
                             <a
                                 href="{{ route('adoption.fiche', $adoption->id)}}"
                                 class="font-semibold text-[#C67C47] hover:underline">
