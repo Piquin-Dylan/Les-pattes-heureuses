@@ -188,6 +188,7 @@ new class extends Component {
 
             <livewire:livewire.adoption.adoption-list
                 :month="$currentMonth"
+                :show-header="false"
             />
 
         </div>

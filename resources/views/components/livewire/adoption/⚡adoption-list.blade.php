@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\AdoptionStatus;
 use App\Models\Adoption;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -13,7 +14,25 @@ new class extends Component {
 
     public string $filtersStatus = 'tous';
 
+    public bool $pendingOnly = false;
 
+    public bool $showHeader = true;
+
+    public function updatedPendingOnly(): void
+    {
+        if ($this->pendingOnly) {
+            $this->filtersStatus = AdoptionStatus::Pending->value;
+        } else {
+            $this->filtersStatus = 'tous';
+        }
+
+        $this->resetPage();
+    }
+
+    public function getPendingCountProperty(): int
+    {
+        return Adoption::where('status', AdoptionStatus::Pending->value)->count();
+    }
 
     public function getAdoptionsProperty()
     {
@@ -38,26 +57,30 @@ new class extends Component {
 
 <div class="space-y-6">
 
-    <div class="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+    @if($showHeader)
+        <div class="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
 
-        <x-page-header
-            title="Demandes d'adoption"
-            description="Suivez et gérez les demandes d'adoption."/>
+            <x-page-header
+                title="Demandes d'adoption"
+                description="Suivez et gérez les demandes d'adoption."/>
 
-        @can('manage-animals')
-            <a
-                href="{{ route('adoptions.create') }}"
-                class="rounded-2xl bg-[#C67C47] px-6 py-3 text-center font-semibold text-white transition hover:bg-[#b56f3c]">
-                Nouvelle adoption
-            </a>
-        @endcan
+            @can('manage-animals')
+                <a
+                    href="{{ route('adoptions.create') }}"
+                    class="rounded-2xl bg-[#C67C47] px-6 py-3 text-center font-semibold text-white transition hover:bg-[#b56f3c]">
+                    Nouvelle adoption
+                </a>
+            @endcan
 
-    </div>
+        </div>
+    @endif
 
     <x-search
         search="searchAnimal"
         filter="filters"
         status="filtersStatus"
+        pendingOnly="pendingOnly"
+        :pendingCount="$this->pendingCount"
         :enum="\App\Enums\AdoptionStatus::class"
     />
 
