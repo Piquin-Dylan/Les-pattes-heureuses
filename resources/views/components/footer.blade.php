@@ -1,8 +1,8 @@
 <footer class="bg-[#BC8451] px-8 py-12 text-white" itemscope itemtype="https://schema.org/AnimalShelter">
     <h2 class="sr-only">Navigation de bas de page</h2>
     <div class="mx-auto max-w-7xl">
-        <div class="grid gap-10 sm:grid-cols-3">
-            <div>
+        <div class="flex flex-col gap-10 sm:flex-row sm:flex-wrap sm:justify-between">
+            <div class="sm:max-w-xs">
                 <span class="text-xl font-bold" itemprop="name">Les pattes heureuses</span>
                 <p class="mt-3 text-sm text-white/80" itemprop="description">
                     Refuge animalier dédié au bien-être des chiens, chats et autres compagnons

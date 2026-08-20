@@ -15,7 +15,7 @@
                 <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#C67C47]/10 text-xl" aria-hidden="true">📍</span>
                 <div>
                     <p class="text-sm font-medium text-gray-500">Adresse du refuge</p>
-                    <p class="font-semibold text-gray-900">12 chemin des Tilleuls<br>69000 Lyon</p>
+                    <p class="font-semibold text-gray-900">12 rue des Tilleuls<br>4000 Liège</p>
                 </div>
             </div>
 

@@ -29,14 +29,14 @@ new class extends Component {
 <div>
 
     <section class="bg-[#FDF8F4] px-8 py-16">
-        <div class="mx-auto max-w-5xl text-center">
+        <div class="mx-auto max-w-5xl text-left">
             <p class="text-xs font-semibold uppercase tracking-wider text-[#C67C47]">
                 Rejoignez l'aventure
             </p>
             <h1 class="mt-3 text-4xl font-bold text-gray-900 sm:text-5xl">
                 Devenir membre
             </h1>
-            <p class="mx-auto mt-4 max-w-2xl text-base leading-7 text-gray-600">
+            <p class="mt-4 max-w-2xl text-base leading-7 text-gray-600">
                 Les Pattes Heureuses fonctionne grâce à l'engagement de ses membres. En nous
                 rejoignant, vous aidez directement les animaux du refuge : promenades,
                 socialisation, entretien, événements et bien plus encore.
@@ -47,7 +47,7 @@ new class extends Component {
     <section class="px-8 py-16">
         <div class="mx-auto max-w-6xl">
 
-            <div class="text-center">
+            <div class="text-left">
                 <h2 class="text-2xl font-bold text-gray-900 sm:text-3xl">
                     Pourquoi devenir membre ?
                 </h2>
@@ -111,7 +111,7 @@ new class extends Component {
     <section class="bg-[#FDF8F4] px-8 py-16">
         <div class="mx-auto max-w-4xl">
 
-            <div class="text-center">
+            <div class="text-left">
                 <h2 class="text-2xl font-bold text-gray-900 sm:text-3xl">
                     Comment ça marche ?
                 </h2>
@@ -119,8 +119,8 @@ new class extends Component {
 
             <div class="mt-10 grid gap-8 sm:grid-cols-3">
 
-                <div class="text-center">
-                    <div class="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-[#C67C47] text-base font-bold text-white">
+                <div class="text-left">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[#C67C47] text-base font-bold text-white">
                         1
                     </div>
                     <h3 class="mt-4 font-semibold text-gray-900">
@@ -131,8 +131,8 @@ new class extends Component {
                     </p>
                 </div>
 
-                <div class="text-center">
-                    <div class="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-[#C67C47] text-base font-bold text-white">
+                <div class="text-left">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[#C67C47] text-base font-bold text-white">
                         2
                     </div>
                     <h3 class="mt-4 font-semibold text-gray-900">
@@ -143,8 +143,8 @@ new class extends Component {
                     </p>
                 </div>
 
-                <div class="text-center">
-                    <div class="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-[#C67C47] text-base font-bold text-white">
+                <div class="text-left">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[#C67C47] text-base font-bold text-white">
                         3
                     </div>
                     <h3 class="mt-4 font-semibold text-gray-900">

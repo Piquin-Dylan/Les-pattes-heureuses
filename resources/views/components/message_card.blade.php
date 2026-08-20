@@ -2,9 +2,9 @@
         wire:key="message-{{ $message->id }}"
         class="rounded-3xl border border-gray-200 bg-white p-5 shadow-sm transition hover:border-[#C67C47]/40 hover:shadow-md sm:p-6">
 
-        <div class="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+        <div class="flex flex-col gap-5 lg:flex-row lg:items-center lg:gap-10">
 
-            <div class="min-w-0 flex-1">
+            <div class="min-w-0 flex-1 lg:max-w-2xl">
 
                 <div class="flex items-start gap-3">
 
