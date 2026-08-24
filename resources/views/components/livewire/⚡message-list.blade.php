@@ -21,10 +21,12 @@ new class extends Component {
 
     <section class="mb-8">
 
-        <x-page-header
-            title="Messages"
-            description="Consultez les messages envoyés depuis le formulaire de contact"
-        />
+        <div class="mb-6">
+            <x-page-header
+                title="Messages"
+                description="Consultez les messages envoyés depuis le formulaire de contact"
+            />
+        </div>
 
         @if($this->messages->isEmpty())
 

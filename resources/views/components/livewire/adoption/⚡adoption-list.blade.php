@@ -37,6 +37,7 @@ new class extends Component {
     public function getAdoptionsProperty()
     {
         return Adoption::query()
+            ->with('animal')
             ->when($this->searchAnimal, function ($query) {
                 $query->where('firstName', 'like', '%' . $this->searchAnimal . '%')
                     ->orWhereHas('animal', function ($query) {

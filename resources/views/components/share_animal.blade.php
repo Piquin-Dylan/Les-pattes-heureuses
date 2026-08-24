@@ -3,13 +3,12 @@
 ])
 
 <div
-    x-data="{ open: false }"
-    class="inline-block">
+    x-data="{ open: false }">
 
     <button
         @click="open = true"
         type="button"
-        class="rounded-xl border border-[#C67C47] px-5 py-3 font-semibold text-[#C67C47] transition hover:bg-[#C67C47] hover:text-white cursor-pointer">
+        class="w-full rounded-xl border border-[#C67C47] py-3 text-center font-semibold text-[#C67C47] transition hover:bg-[#C67C47] hover:text-white cursor-pointer">
         Partager
 
     </button>

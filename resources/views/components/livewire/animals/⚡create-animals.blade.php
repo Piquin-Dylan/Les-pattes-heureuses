@@ -51,10 +51,12 @@ new class extends Component {
 <div class="w-full px-0 py-6 sm:px-4">
 
     <section class="mb-8">
-        <x-page-header
-            title="Modifier l'animal"
-            description="Modifiez les informations de l'animal."
-        />
+        <div class="mb-6">
+            <x-page-header
+                title="Ajouter un animal"
+                description="Complétez les informations de l'animal."
+            />
+        </div>
 
         <form
             wire:submit.prevent="save"

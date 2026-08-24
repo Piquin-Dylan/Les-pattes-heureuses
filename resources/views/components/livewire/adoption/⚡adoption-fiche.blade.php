@@ -49,12 +49,12 @@ new class extends Component {
 
     <x-fiche_adoption :adoption="$adoption"></x-fiche_adoption>
 
-
-
-    <x-add_note
-        function="save"
-        model="form.message"
-        :notes="$adoption->notes"
-    />
+    <div class="mt-6">
+        <x-add_note
+            function="save"
+            model="form.message"
+            :notes="$adoption->notes"
+        />
+    </div>
 
 </div>

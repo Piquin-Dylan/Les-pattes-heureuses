@@ -58,9 +58,13 @@ new class extends Component {
         $start = $this->currentMonth->copy()->startOfMonth();
         $end = $this->currentMonth->copy()->endOfMonth();
 
-        $animals = Animal::whereBetween('created_at', [$start, $end])->get();
+        $animals = Animal::with('breed')
+            ->whereBetween('created_at', [$start, $end])
+            ->get();
 
-        $adoptions = Adoption::whereBetween('created_at', [$start, $end])->get();
+        $adoptions = Adoption::with('animal')
+            ->whereBetween('created_at', [$start, $end])
+            ->get();
 
         $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('pdf.monthly-report', [
             'month' => $this->currentMonth,
