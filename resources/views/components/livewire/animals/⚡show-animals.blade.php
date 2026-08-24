@@ -64,7 +64,7 @@ new class extends Component {
                     $query->where('status', $this->filtersStatus);
                 }
             )
-            ->paginate(6);
+            ->paginate(12);
     }
 };
 ?>

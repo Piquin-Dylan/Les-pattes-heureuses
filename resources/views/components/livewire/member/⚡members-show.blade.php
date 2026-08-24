@@ -30,7 +30,7 @@ new class extends Component {
                     );
                 });
             })
-            ->paginate(2);
+            ->paginate(10);
     }
 };
 ?>

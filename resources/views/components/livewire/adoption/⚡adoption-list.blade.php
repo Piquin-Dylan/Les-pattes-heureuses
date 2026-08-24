@@ -51,7 +51,7 @@ new class extends Component {
                     );
                 }
             )
-            ->paginate(5);
+            ->paginate(10);
     }
 };
 ?>

@@ -11,7 +11,7 @@ new class extends Component {
     {
         return Message::query()
             ->latest()
-            ->paginate(2);
+            ->paginate(10);
     }
 
 };
