@@ -24,7 +24,6 @@ new class extends Component {
 
     public function updateStatusAdoption(): void
     {
-
         $this->animal->update([
             'status' => $this->requestAdoption,
         ]);

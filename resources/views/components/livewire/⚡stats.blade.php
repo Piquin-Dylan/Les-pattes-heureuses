@@ -17,10 +17,7 @@ new class extends Component {
     public function mount(): void
     {
         $this->currentMonth = now()->startOfMonth();
-
         $this->loadStats();
-
-
     }
 
     public function previousMonth(): void
@@ -185,12 +182,9 @@ new class extends Component {
         </div>
 
         <div class="p-6">
-
             <livewire:livewire.adoption.adoption-list
                 :month="$currentMonth"
-                :show-header="false"
-            />
-
+                :show-header="false"/>
         </div>
 
     </div>

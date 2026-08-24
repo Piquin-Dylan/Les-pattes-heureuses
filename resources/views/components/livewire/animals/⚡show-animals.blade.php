@@ -46,6 +46,8 @@ new class extends Component {
 
     public function getAnimalsProperty()
     {
+
+
         return Animal::query()
             ->when(Gate::denies('manage-animals'), function ($query) {
                 $query->where('status', StatusAnimal::ADOPTABLE->value);
@@ -62,7 +64,7 @@ new class extends Component {
                     $query->where('status', $this->filtersStatus);
                 }
             )
-            ->paginate(2);
+            ->paginate(6);
     }
 };
 ?>

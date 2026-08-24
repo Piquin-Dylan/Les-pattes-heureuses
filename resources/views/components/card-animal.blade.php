@@ -76,8 +76,7 @@
         ? route('animals.show', $animal)
         : route('public.animals.show', $animal)
     }}"
-            class="block rounded-xl bg-[#C67C47] py-3 text-center font-semibold text-white transition hover:bg-[#b56f3c]"
-        >
+            class="block rounded-xl bg-[#C67C47] py-3 text-center font-semibold text-white transition hover:bg-[#b56f3c]">
             Voir la fiche
         </a>
 
