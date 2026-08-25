@@ -5,6 +5,7 @@
     "for_label",
     "name",
     "id",
+    "form_name" => 'form',
 ])
 
 <div
@@ -44,7 +45,7 @@
             ]) }}>
     </div>
 
-    @error('form.' . $name)
+    @error($form_name . '.' . $name)
     <small class="text-red-500 pt-2">
         {{ $message }}
     </small>
