@@ -14,9 +14,12 @@ use App\Models\Breed;
 use App\Models\Message;
 use App\Models\User;
 use App\Models\Vaccine;
+use App\Services\ImageService;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
@@ -26,7 +29,7 @@ class DatabaseSeeder extends Seeder
     /**
      * Seed the application's database.
      */
-    public function run(): void
+    public function run(ImageService $imageService): void
     {
         User::factory()->create([
             'lastName' => 'Doe',
@@ -444,7 +447,7 @@ class DatabaseSeeder extends Seeder
                 'name' => $animal['name'],
                 'slug' => Str::slug($animal['name']),
                 'description' => $animal['description'],
-                'photo' => null,
+                'photo' => $this->fetchAnimalPhoto($imageService, $animal['species']),
                 'age' => $animal['age'],
                 'species' => $animal['species'],
                 'sex' => $animal['sex'],
@@ -677,6 +680,48 @@ class DatabaseSeeder extends Seeder
 
         foreach ($messages as $message) {
             Message::create($message);
+        }
+    }
+
+    /**
+     * Télécharge une vraie photo d'animal (chien via dog.ceo, chat via TheCatAPI)
+     * et la fait passer par le pipeline habituel (ImageService) pour générer les
+     * différentes tailles webp. Retourne null en cas d'échec (pas de connexion,
+     * API indisponible, ...) afin que le seeder ne casse jamais hors-ligne.
+     */
+    private function fetchAnimalPhoto(ImageService $imageService, SpeciesAnimal $species): ?string
+    {
+        try {
+            $imageUrl = match ($species) {
+                SpeciesAnimal::chien => Http::timeout(10)->get('https://dog.ceo/api/breeds/image/random')->json('message'),
+                SpeciesAnimal::chat => Http::timeout(10)->get('https://api.thecatapi.com/v1/images/search')->json('0.url'),
+            };
+
+            if (! $imageUrl) {
+                return null;
+            }
+
+            $response = Http::timeout(15)->get($imageUrl);
+
+            if (! $response->successful()) {
+                return null;
+            }
+
+            $tmpPath = tempnam(sys_get_temp_dir(), 'seed_animal_');
+            file_put_contents($tmpPath, $response->body());
+
+            $directory = $imageService->storeAnimalImage($tmpPath);
+
+            unlink($tmpPath);
+
+            return $directory;
+        } catch (\Throwable $e) {
+            Log::warning('DatabaseSeeder: impossible de récupérer une photo animale.', [
+                'species' => $species->value,
+                'error' => $e->getMessage(),
+            ]);
+
+            return null;
         }
     }
 
