@@ -23,17 +23,30 @@
             <div class="grid gap-4 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
 
                 <div class="rounded-2xl border border-gray-200 bg-white p-5 text-center shadow-sm">
-                    <span class="text-3xl" aria-hidden="true">🩺</span>
+                    <span class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#C67C47]/10 text-[#C67C47]">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+                            <polyline stroke-linecap="round" stroke-linejoin="round" points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                        </svg>
+                    </span>
                     <p class="mt-3 text-sm font-semibold text-gray-900">Suivi vétérinaire</p>
                 </div>
 
                 <div class="rounded-2xl border border-gray-200 bg-white p-5 text-center shadow-sm">
-                    <span class="text-3xl" aria-hidden="true">💉</span>
+                    <span class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#C67C47]/10 text-[#C67C47]">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            <polyline stroke-linecap="round" stroke-linejoin="round" points="9 12 11 14 15 10" />
+                        </svg>
+                    </span>
                     <p class="mt-3 text-sm font-semibold text-gray-900">Vaccinés & identifiés</p>
                 </div>
 
                 <div class="rounded-2xl border border-gray-200 bg-white p-5 text-center shadow-sm">
-                    <span class="text-3xl" aria-hidden="true">❤️</span>
+                    <span class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#C67C47]/10 text-[#C67C47]">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                        </svg>
+                    </span>
                     <p class="mt-3 text-sm font-semibold text-gray-900">Sociabilisés avec amour</p>
                 </div>
 
