@@ -20,10 +20,7 @@ class ImageService
 
     public function __construct()
     {
-        // Built directly rather than via the "image" container binding:
-        // Laravel's own bundled Illuminate\Image component registers that
-        // same binding name and silently shadows Intervention's, which
-        // resolves the wrong (incompatible) manager.
+
         $this->manager = ImageManager::gd();
     }
 

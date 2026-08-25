@@ -109,7 +109,7 @@ new class extends Component {
     </section>
 
     <section class="bg-[#FDF8F4] px-8 py-16">
-        <div class="mx-auto max-w-4xl">
+        <div class="mx-auto max-w-6xl">
 
             <div class="text-left">
                 <h2 class="text-2xl font-bold text-gray-900 sm:text-3xl">
