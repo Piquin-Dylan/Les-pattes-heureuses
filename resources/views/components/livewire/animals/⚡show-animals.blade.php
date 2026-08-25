@@ -49,6 +49,7 @@ new class extends Component {
 
 
         return Animal::query()
+            ->latest()
             ->when(Gate::denies('manage-animals'), function ($query) {
                 $query->where('status', StatusAnimal::ADOPTABLE->value);
             })
