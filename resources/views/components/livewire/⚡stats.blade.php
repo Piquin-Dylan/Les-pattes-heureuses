@@ -128,48 +128,6 @@ new class extends Component {
     </div>
 
 
-    @if($awaitingNotificationAdoptions->isNotEmpty())
-
-        <div class="rounded-3xl border border-amber-200 bg-amber-50 p-6">
-
-            <div class="flex items-start gap-3">
-
-                <span class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-amber-100 text-amber-700">
-                    <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
-                    </svg>
-                </span>
-
-                <div>
-                    <h2 class="text-lg font-semibold text-amber-900">
-                        Tâches à finaliser
-                    </h2>
-                    <p class="mt-1 text-sm text-amber-800">
-                        Ces demandes sont passées « en cours » mais le demandeur n’a pas encore été notifié par e-mail.
-                    </p>
-                </div>
-
-            </div>
-
-            <ul class="mt-4 space-y-2">
-                @foreach($awaitingNotificationAdoptions as $awaitingAdoption)
-                    <li class="flex flex-col gap-2 rounded-xl bg-white px-4 py-3 text-sm sm:flex-row sm:items-center sm:justify-between">
-                        <span class="text-[#202534]">
-                            <strong>{{ $awaitingAdoption->firstName }} {{ $awaitingAdoption->lastName }}</strong>
-                            — demande pour {{ $awaitingAdoption->animal->name }}
-                        </span>
-                        <a
-                            href="{{ route('adoption.fiche', $awaitingAdoption) }}"
-                            class="font-semibold text-[#C67C47] hover:underline">
-                            Traiter la demande →
-                        </a>
-                    </li>
-                @endforeach
-            </ul>
-
-        </div>
-
-    @endif
 
     <div class="grid gap-6 lg:grid-cols-3">
 

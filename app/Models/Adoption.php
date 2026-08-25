@@ -44,6 +44,7 @@ class Adoption extends Model
     {
         return $query->where('status', \App\Enums\AdoptionStatus::Pending->value);
     }
+    
     public function scopeAwaitingNotification($query)
     {
         return $query
