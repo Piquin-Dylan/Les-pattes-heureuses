@@ -20,8 +20,15 @@ class Adoption extends Model
         'message',
         'animal_id',
         'status',
+        'notified_at',
     ];
 
+    protected function casts(): array
+    {
+        return [
+            'notified_at' => 'datetime',
+        ];
+    }
 
     public function animal(): BelongsTo
     {
@@ -36,5 +43,11 @@ class Adoption extends Model
     public function scopePending($query)
     {
         return $query->where('status', \App\Enums\AdoptionStatus::Pending->value);
+    }
+    public function scopeAwaitingNotification($query)
+    {
+        return $query
+            ->where('status', \App\Enums\AdoptionStatus::InProgress->value)
+            ->whereNull('notified_at');
     }
 }
